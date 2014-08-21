@@ -1,0 +1,2164 @@
+{
+   "com.element.oimo.physics.collision.broadphase.dbvt" : {
+      "DBVTNode" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.dbvt {"
+         },
+         {
+            "comment" : "/**\n * A node of the dynamic bounding volume tree.\n * @author saharan\n */",
+            "subject" : "public class DBVTNode {"
+         },
+         {
+            "comment" : "/**\n * The first child node of this node.\n */",
+            "subject" : "public var child1:DBVTNode;"
+         },
+         {
+            "comment" : "/**\n * The second child node of this node.\n */",
+            "subject" : "public var child2:DBVTNode;"
+         },
+         {
+            "comment" : "/**\n * The parent node of this tree.\n */",
+            "subject" : "public var parent:DBVTNode;"
+         },
+         {
+            "comment" : "/**\n * The proxy of this node. This has no value if this node is not leaf.\n */",
+            "subject" : "public var proxy:DBVTProxy;"
+         },
+         {
+            "comment" : "/**\n * The maximum distance from leaf nodes.\n */",
+            "subject" : "public var height:int;"
+         },
+         {
+            "comment" : "/**\n * The AABB of this node.\n */",
+            "subject" : "public var aabb:AABB;"
+         }
+      ],
+      "DBVTBroadPhase" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.dbvt {"
+         },
+         {
+            "comment" : "/**\n * A broad-phase algorithm using dynamic bounding volume tree.\n * @author saharan\n */",
+            "subject" : "public class DBVTBroadPhase extends BroadPhase {"
+         }
+      ],
+      "DBVTProxy" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.dbvt {"
+         },
+         {
+            "comment" : "/**\n * A proxy for dynamic bounding volume tree broad-phase.\n * @author saharan\n */",
+            "subject" : "public class DBVTProxy extends Proxy {"
+         },
+         {
+            "comment" : "/**\n * The leaf of the proxy.\n */",
+            "subject" : "public var leaf:DBVTNode;"
+         }
+      ],
+      "DBVT" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.dbvt {"
+         },
+         {
+            "comment" : "/**\n * A dynamic bounding volume tree for the broad-phase algorithm.\n * @author saharan\n */",
+            "subject" : "public class DBVT {"
+         },
+         {
+            "comment" : "/**\n * The root of the tree.\n */",
+            "subject" : "public var root:DBVTNode;"
+         },
+         {
+            "comment" : "/**\n * Move a leaf.\n * @paramleaf\n */",
+            "subject" : "public function moveLeaf(leaf:DBVTNode):void {"
+         },
+         {
+            "comment" : "/**\n * Insert a leaf to the tree.\n * @paramnode\n */",
+            "subject" : "public function insertLeaf(leaf:DBVTNode):void {"
+         },
+         {
+            "comment" : "/**\n * Delete a leaf from the tree.\n * @paramnode\n */",
+            "subject" : "public function deleteLeaf(leaf:DBVTNode):void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics" : {
+      "OimoPhysics" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics {"
+         },
+         {
+            "comment" : "/**\n * Information of OimoPhysics.\n */",
+            "subject" : "public final class OimoPhysics {"
+         },
+         {
+            "comment" : "/**\n * Version of OimoPhysics.\n */",
+            "subject" : "public static const VERSION:String = \"1.1.0a\";"
+         }
+      ]
+   },
+   "com.element.oimo.physics.constraint" : {
+      "of" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint {"
+         },
+         {
+            "comment" : "/**\n * The base class of all type of the constraints.\n * @author saharan\n */",
+            "subject" : "public class Constraint {"
+         },
+         {
+            "comment" : "/**\n * The parent world of the constraint.\n */",
+            "subject" : "public var parent:World;"
+         },
+         {
+            "comment" : "/**\n * The first body of the constraint.\n */",
+            "subject" : "public var body1:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The second body of the constraint.\n */",
+            "subject" : "public var body2:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * Internal\n */",
+            "subject" : "public var addedToIsland:Boolean;"
+         },
+         {
+            "comment" : "/**\n * Prepare for solving the constraint.\n * @paramtimeStep\n * @paraminvTimeStep\n */",
+            "subject" : "public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * Solve the constraint.\n * This is usually called iteratively.\n */",
+            "subject" : "public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * Do the post-processing.\n */",
+            "subject" : "public function postSolve():void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.demo" : {
+      "PyramidDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class PyramidDemo extends DemoBase {"
+         }
+      ],
+      "BasicDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class BasicDemo extends DemoBase {"
+         }
+      ],
+      "VehicleDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class VehicleDemo extends DemoBase {"
+         }
+      ],
+      "ShapesDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class ShapesDemo extends DemoBase {"
+         }
+      ],
+      "BridgeDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class BridgeDemo extends DemoBase {"
+         }
+      ],
+      "HingeJointDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class HingeJointDemo extends DemoBase {"
+         }
+      ],
+      "FrictionDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class FrictionDemo extends DemoBase {"
+         }
+      ],
+      "BallAndSocketJointDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class BallAndSocketJointDemo extends DemoBase {"
+         }
+      ],
+      "OimoPhysicsDemos" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * OimoPhysics demos.\n * @author saharan\n */",
+            "subject" : "[SWF(width = \"640\", height = \"480\", frameRate = \"60\")]"
+         }
+      ],
+      "RestitutionDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class RestitutionDemo extends DemoBase {"
+         }
+      ],
+      "DistanceJointDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class DistanceJointDemo extends DemoBase {"
+         }
+      ],
+      "DemoBase" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class DemoBase {"
+         }
+      ],
+      "CollisionFilteringDemo" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.demo {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class CollisionFilteringDemo extends DemoBase {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.util" : {
+      "DebugDraw" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.util {"
+         },
+         {
+            "comment" : "/**\n * Simple world renderer\n */",
+            "subject" : "public class DebugDraw {"
+         },
+         {
+            "comment" : "/**\n * Render the world.\n */",
+            "subject" : "public function render():void {"
+         }
+      ],
+      "Performance" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.util {"
+         },
+         {
+            "comment" : "/**\n * ワールドが物理演算に要した時間などを記録するクラスです。\n * 特に表記がない場合、時間の単位はミリ秒です。\n * @author saharan\n */",
+            "subject" : "public class Performance {"
+         },
+         {
+            "comment" : "/**\n * 広域衝突判定に要した時間です。\n */",
+            "subject" : "public var broadPhaseTime:uint;"
+         },
+         {
+            "comment" : "/**\n * 詳細な衝突判定に要した時間です。\n */",
+            "subject" : "public var narrowPhaseTime:uint;"
+         },
+         {
+            "comment" : "/**\n * 拘束や積分の計算に要した時間です。\n */",
+            "subject" : "public var solvingTime:uint;"
+         },
+         {
+            "comment" : "/**\n * その他の更新に要した時間です。\n */",
+            "subject" : "public var updatingTime:uint;"
+         },
+         {
+            "comment" : "/**\n * ステップ計算に要した合計時間です。\n */",
+            "subject" : "public var totalTime:uint;"
+         },
+         {
+            "comment" : "/**\n * 新しく Performance オブジェクトを作成します。\n */",
+            "subject" : "public function Performance() {"
+         }
+      ]
+   },
+   "com.element.oimo.math" : {
+      "Vec3" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * A 3D vector. This supports three-dimansional vector operations.\n * @author saharan\n */",
+            "subject" : "public class Vec3 {"
+         },
+         {
+            "comment" : "/**\n * Constructor.\n * If the parameters are empty, the vector will be set to the zero vector.\n * @paramx\n * @paramy\n * @paramz\n */",
+            "subject" : "public function Vec3(x:Number = 0, y:Number = 0, z:Number = 0) {"
+         },
+         {
+            "comment" : "/**\n * Initialize the vector.\n * If the parameters are empty, the vector will be set to the zero vector.\n * @paramx\n * @paramy\n * @paramz\n * @return\n */",
+            "subject" : "public function init(x:Number = 0, y:Number = 0, z:Number = 0):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = v1 + v2\n * @paramv1\n * @paramv2\n * @return\n */",
+            "subject" : "public function add(v1:Vec3, v2:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = this + v\n * @paramv\n * @return\n */",
+            "subject" : "public function addEqual(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = v1 - v2\n * @paramv1\n * @paramv2\n * @return\n */",
+            "subject" : "public function sub(v1:Vec3, v2:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = this - v\n * @paramv\n * @return\n */",
+            "subject" : "public function subEqual(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = v * s\n * @paramv\n * @params\n * @return\n */",
+            "subject" : "public function scale(v:Vec3, s:Number):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = this * s\n * @params\n * @return\n */",
+            "subject" : "public function scaleEqual(s:Number):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * Get the dot production of this vector and v.\n * @paramv\n * @return\n */",
+            "subject" : "public function dot(v:Vec3):Number {"
+         },
+         {
+            "comment" : "/**\n * Set this vector to the cross product of v1 and v2.\n * @paramv1\n * @paramv2\n * @return\n */",
+            "subject" : "public function cross(v1:Vec3, v2:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = m * v\n * @paramm\n * @paramv\n * @return\n */",
+            "subject" : "public function mulMat(m:Mat33, v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * Set this vector to the normalized vector of v.\n * @paramv\n * @return\n */",
+            "subject" : "public function normalize(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * this = -v\n * @paramv\n * @return\n */",
+            "subject" : "public function invert(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * Get the length of the vector.\n * @return\n */",
+            "subject" : "public function length():Number {"
+         },
+         {
+            "comment" : "/**\n * this = v\n * @paramv\n * @return\n */",
+            "subject" : "public function copy(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * Get the clone of the vector.\n * @return\n */",
+            "subject" : "public function clone():Vec3 {"
+         },
+         {
+            "comment" : "/**\n * Get the string of the vector.\n * @return\n */",
+            "subject" : "public function toString():String {"
+         }
+      ],
+      "Mat33" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * A 3x3 matrix. This supports rotation, skewing, and scaling transformations.\n * @author saharan\n */",
+            "subject" : "public class Mat33 {"
+         },
+         {
+            "comment" : "/**\n * Constructor.\n * If the parameters are empty, the matrix will be set to the itentity matrix.\n * @parame00\n * @parame01\n * @parame02\n * @parame10\n * @parame11\n * @parame12\n * @parame20\n * @parame21\n * @parame22\n */",
+            "subject" : "public function Mat33("
+         },
+         {
+            "comment" : "/**\n * Initialize the matrix.\n * If the parameters are empty, the matrix will be set to the itentity matrix.\n * @parame00\n * @parame01\n * @parame02\n * @parame10\n * @parame11\n * @parame12\n * @parame20\n * @parame21\n * @parame22\n * @return\n */",
+            "subject" : "public function init("
+         },
+         {
+            "comment" : "/**\n * this = m1 + m2\n * @paramm1\n * @paramm2\n * @return\n */",
+            "subject" : "public function add(m1:Mat33, m2:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = this + m\n * @paramm\n * @return\n */",
+            "subject" : "public function addEqual(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = m1 - m2\n * @paramm1\n * @paramm2\n * @return\n */",
+            "subject" : "public function sub(m1:Mat33, m2:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = this - m\n * @paramm\n * @return\n */",
+            "subject" : "public function subEqual(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = m * s\n * @paramm\n * @params\n * @return\n */",
+            "subject" : "public function scale(m:Mat33, s:Number):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = this * s\n * @params\n * @return\n */",
+            "subject" : "public function scaleEqual(s:Number):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = m1 * m2\n * @paramm1\n * @paramm2\n * @return\n */",
+            "subject" : "public function mul(m1:Mat33, m2:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the multiplication of m and scaling matrix.\n * this = [scaling matrix] * m (prepend == true)\n * this = m * [scaling matrix] (prepend == false)\n * @paramm\n * @paramsx \n * @paramsy\n * @paramsz\n * @paramprepend\n * @return\n */",
+            "subject" : "public function mulScale(m:Mat33, sx:Number, sy:Number, sz:Number, prepend:Boolean = false):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the multiplication of m and rotation matrix.\n * this = [rotation matrix] * m (prepend == true)\n * this = m * [rotation matrix] (prepend == false)\n * @paramm\n * @paramrad\n * @paramax\n * @paramay\n * @paramaz\n * @paramprepend\n * @return\n */",
+            "subject" : "public function mulRotate(m:Mat33, rad:Number, ax:Number, ay:Number, az:Number, prepend:Boolean = false):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the transposed matrix of m.\n * @paramm\n * @return\n */",
+            "subject" : "public function transpose(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the rotation matrix of q.\n * @paramq\n * @return\n */",
+            "subject" : "public function setQuat(q:Quat):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = m ^ -1\n * @paramm\n * @return\n */",
+            "subject" : "public function invert(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = m\n * @paramm\n * @return\n */",
+            "subject" : "public function copy(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * this = m\n * @paramm\n * @return\n */",
+            "subject" : "public function copyMat44(m:Mat44):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * Get the clone of the matrix.\n * @return\n */",
+            "subject" : "public function clone():Mat33 {"
+         },
+         {
+            "comment" : "/**\n * Get the string of the matrix.\n * @return\n */",
+            "subject" : "public function toString():String {"
+         }
+      ],
+      "Mat44" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * A 4x4 matrix. This supports three-dimentional transformations perfectly.\n * @author saharan\n */",
+            "subject" : "public class Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Constructor.\n * If the parameters are empty, the matrix will be set to the identity matrix.\n * @parame00\n * @parame01\n * @parame02\n * @parame03\n * @parame10\n * @parame11\n * @parame12\n * @parame13\n * @parame20\n * @parame21\n * @parame22\n * @parame23\n * @parame30\n * @parame31\n * @parame32\n * @parame33\n */",
+            "subject" : "public function Mat44("
+         },
+         {
+            "comment" : "/**\n * Initialize the matrix.\n * If the parameters are empty, the matrix will be set to the identity matrix.\n * @parame00\n * @parame01\n * @parame02\n * @parame03\n * @parame10\n * @parame11\n * @parame12\n * @parame13\n * @parame20\n * @parame21\n * @parame22\n * @parame23\n * @parame30\n * @parame31\n * @parame32\n * @parame33\n * @return\n */",
+            "subject" : "public function init("
+         },
+         {
+            "comment" : "/**\n * this = m1 + m2\n * @paramm1\n * @paramm2\n * @return\n */",
+            "subject" : "public function add(m1:Mat44, m2:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * this = m1 - m2\n * @paramm1\n * @paramm2\n * @return\n */",
+            "subject" : "public function sub(m1:Mat44, m2:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * this = m * s\n * @paramm\n * @params\n * @return\n */",
+            "subject" : "public function scale(m:Mat44, s:Number):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * this = m1 * m2\n * @paramm1\n * @paramm2\n * @return\n */",
+            "subject" : "public function mul(m1:Mat44, m2:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the multiplication of m and scaling matrix.\n * this = [scaling matrix] * m (prepend == true)\n * this = m * [scaling matrix] (prepend == false)\n * @paramm\n * @paramsx \n * @paramsy\n * @paramsz\n * @paramprepend\n * @return\n */",
+            "subject" : "public function mulScale(m:Mat44, sx:Number, sy:Number, sz:Number, prepend:Boolean = false):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the multiplication of m and rotation matrix.\n * this = [rotation matrix] * m (prepend == true)\n * this = m * [rotation matrix] (prepend == false)\n * @paramm\n * @paramrad\n * @paramax\n * @paramay\n * @paramaz\n * @paramprepend\n * @return\n */",
+            "subject" : "public function mulRotate(m:Mat44, rad:Number, ax:Number, ay:Number, az:Number, prepend:Boolean = false):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the multiplication of m and translation matrix.\n * this = [translation matrix] * m (prepend == true)\n * this = m * [translation matrix] (prepend == false)\n * @paramm\n * @paramtx\n * @paramty\n * @paramtz\n * @paramprepend\n * @return\n */",
+            "subject" : "public function mulTranslate(m:Mat44, tx:Number, ty:Number, tz:Number, prepend:Boolean = false):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the transposed matrix of m.\n * @paramm\n * @return\n */",
+            "subject" : "public function transpose(m:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Set this matrix to the rotation matrix of q.\n * @paramq\n * @return\n */",
+            "subject" : "public function setQuat(q:Quat):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * this = m ^ -1\n * @paramm\n * @return\n */",
+            "subject" : "public function invert(m:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Set the matrix to right-handed view matrix.\n * @parameyeX\n * @parameyeY\n * @parameyeZ\n * @paramatX \n * @paramatY\n * @paramatZ\n * @paramupX\n * @paramupY\n * @paramupZ\n * @return\n */",
+            "subject" : "public function lookAt("
+         },
+         {
+            "comment" : "/**\n * Set the matrix to the right-handed perspective projection matrix.\n * @paramfovY\n * @paramaspect\n * @paramnear\n * @paramfar\n * @return\n */",
+            "subject" : "public function perspective(fovY:Number, aspect:Number, near:Number, far:Number):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Set the matrix to the right-handed orthogonal projection matrix.\n * @paramwidth\n * @paramheight\n * @paramnear\n * @paramfar\n * @return\n */",
+            "subject" : "public function ortho(width:Number, height:Number, near:Number, far:Number):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * this = m\n * @paramm\n * @return\n */",
+            "subject" : "public function copy(m:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * this = m\n * @paramm\n * @return\n */",
+            "subject" : "public function copyMat33(m:Mat33):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Get the clone of the matrix.\n * @return\n */",
+            "subject" : "public function clone():Mat44 {"
+         },
+         {
+            "comment" : "/**\n * Get the string of the matrix.\n * @return\n */",
+            "subject" : "public function toString():String {"
+         }
+      ],
+      "Quat" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * A quaternion. This is used to represent three-dimansional orientations of rigid bodies.\n * @author saharan\n */",
+            "subject" : "public class Quat {"
+         },
+         {
+            "comment" : "/**\n * Constructor.\n * If the parameters are empty, the quaternion will be set to the identity quaternion.\n * @params\n * @paramx\n * @paramy\n * @paramz\n */",
+            "subject" : "public function Quat(s:Number = 1, x:Number = 0, y:Number = 0, z:Number = 0) {"
+         },
+         {
+            "comment" : "/**\n * Initialize the quaternion.\n * If the parameters are empty, the quaternion will be set to the identity quaternion.\n * @params\n * @paramx\n * @paramy\n * @paramz\n * @return\n */",
+            "subject" : "public function init(s:Number = 1, x:Number = 0, y:Number = 0, z:Number = 0):Quat {"
+         },
+         {
+            "comment" : "/**\n * this = q1 + q2\n * @paramq1\n * @paramq2\n * @return\n */",
+            "subject" : "public function add(q1:Quat, q2:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * this = q1 - q2\n * @paramq1\n * @paramq2\n * @return\n */",
+            "subject" : "public function sub(q1:Quat, q2:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * this = q * s\n * @paramq\n * @params\n * @return\n */",
+            "subject" : "public function scale(q:Quat, s:Number):Quat {"
+         },
+         {
+            "comment" : "/**\n * this = q1 * q2\n * @paramq1\n * @paramq2\n * @return\n */",
+            "subject" : "public function mul(q1:Quat, q2:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * Set this quaternion to the shortest arc rotation quaternion.\n * Note that v1 and v2 must be normalized.\n * @paramv1 from\n * @paramv2 to\n * @return\n */",
+            "subject" : "public function arc(v1:Vec3, v2:Vec3):Quat {"
+         },
+         {
+            "comment" : "/**\n * Set this quaternion to the normalized quaternion of q.\n * @paramq\n * @return\n */",
+            "subject" : "public function normalize(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * this = -q\n * @paramq\n * @return\n */",
+            "subject" : "public function invert(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * Get the length of the quaternion.\n * @return\n */",
+            "subject" : "public function length():Number {"
+         },
+         {
+            "comment" : "/**\n * this = q\n * @paramq\n * @return\n */",
+            "subject" : "public function copy(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * Get the clone of the quaternion.\n * @return\n */",
+            "subject" : "public function clone(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * Get the string of the quaternion.\n * @return\n */",
+            "subject" : "public function toString():String {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.collision.broadphase.sap" : {
+      "SAPBroadPhase" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.sap {"
+         },
+         {
+            "comment" : "/**\n * A broad-phase collision detection algorithm using sweep and prune.\n * @author saharan\n */",
+            "subject" : "public class SAPBroadPhase extends BroadPhase {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function addProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function removeProxy(proxy:Proxy):void {"
+         }
+      ],
+      "SAPAxis" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.sap {"
+         },
+         {
+            "comment" : "/**\n * A projection axis for sweep and prune broad-phase.\n * @author saharan\n */",
+            "subject" : "public class SAPAxis {"
+         }
+      ],
+      "SAPProxy" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.sap {"
+         },
+         {
+            "comment" : "/**\n * A proxy for sweep and prune broad-phase.\n * @author saharan\n */",
+            "subject" : "public class SAPProxy extends Proxy {"
+         },
+         {
+            "comment" : "/**\n * The minimum elements on each axis.\n */",
+            "subject" : "public const min:Vector.<SAPElement> = new Vector.<SAPElement>(3, true);"
+         },
+         {
+            "comment" : "/**\n * The maximum elements on each axis.\n */",
+            "subject" : "public const max:Vector.<SAPElement> = new Vector.<SAPElement>(3, true);"
+         },
+         {
+            "comment" : "/**\n * Type of the axis to which the proxy belongs to. [0:none, 1:dynamic, 2:static]\n */",
+            "subject" : "public var belongsTo:int;"
+         },
+         {
+            "comment" : "/**\n * Returns whether the proxy is dynamic or not.\n * @return\n */",
+            "subject" : "public function isDynamic():Boolean {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function update():void {"
+         }
+      ],
+      "SAPElement" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase.sap {"
+         },
+         {
+            "comment" : "/**\n * An element of proxies.\n * @author saharan\n */",
+            "subject" : "public class SAPElement {"
+         },
+         {
+            "comment" : "/**\n * The parent proxy.\n */",
+            "subject" : "public var proxy:SAPProxy;"
+         },
+         {
+            "comment" : "/**\n * The pair element.\n */",
+            "subject" : "public var pair:SAPElement;"
+         },
+         {
+            "comment" : "/**\n * The value of the element.\n */",
+            "subject" : "public var value:Number;"
+         },
+         {
+            "comment" : "/**\n * Whether the element has maximum value or not.\n */",
+            "subject" : "public var max:Boolean;"
+         },
+         {
+            "comment" : "/**\n * The minimum element on other axis.\n */",
+            "subject" : "public var min1:SAPElement;"
+         },
+         {
+            "comment" : "/**\n * The maximum element on other axis.\n */",
+            "subject" : "public var max1:SAPElement;"
+         },
+         {
+            "comment" : "/**\n * The minimum element on other axis.\n */",
+            "subject" : "public var min2:SAPElement;"
+         },
+         {
+            "comment" : "/**\n * The maximum element on other axis.\n */",
+            "subject" : "public var max2:SAPElement;"
+         }
+      ]
+   },
+   "com.element.oimo.physics.constraint.contact" : {
+      "Contact" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         },
+         {
+            "comment" : "/**\n * A contact is a pair of shapes whose axis-aligned bounding boxes are overlapping.\n * @author saharan\n */",
+            "subject" : "public class Contact {"
+         },
+         {
+            "comment" : "/**\n * The first shape.\n */",
+            "subject" : "public var shape1:Shape;"
+         },
+         {
+            "comment" : "/**\n * The second shape.\n */",
+            "subject" : "public var shape2:Shape;"
+         },
+         {
+            "comment" : "/**\n * The first rigid body.\n */",
+            "subject" : "public var body1:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The second rigid body.\n */",
+            "subject" : "public var body2:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The previous contact in the world.\n */",
+            "subject" : "public var prev:Contact;"
+         },
+         {
+            "comment" : "/**\n * The next contact in the world.\n */",
+            "subject" : "public var next:Contact;"
+         },
+         {
+            "comment" : "/**\n * Internal\n */",
+            "subject" : "public var persisting:Boolean;"
+         },
+         {
+            "comment" : "/**\n * Whether both the rigid bodies are sleeping or not.\n */",
+            "subject" : "public var sleeping:Boolean;"
+         },
+         {
+            "comment" : "/**\n * The collision detector between two shapes.\n */",
+            "subject" : "public var detector:CollisionDetector;"
+         },
+         {
+            "comment" : "/**\n * The contact manifold of the contact.\n */",
+            "subject" : "public var manifold:ContactManifold;"
+         },
+         {
+            "comment" : "/**\n * The contact constraint of the contact.\n */",
+            "subject" : "public var constraint:ContactConstraint;"
+         },
+         {
+            "comment" : "/**\n * Whether the shapes are touching or not.\n */",
+            "subject" : "public var touching:Boolean;"
+         },
+         {
+            "comment" : "/**\n * Update the contact manifold.\n */",
+            "subject" : "public function updateManifold():void {"
+         },
+         {
+            "comment" : "/**\n * Attach the contact to the shapes.\n * @paramshape1\n * @paramshape2\n */",
+            "subject" : "public function attach(shape1:Shape, shape2:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * Detach the contact from the shapes.\n */",
+            "subject" : "public function detach():void {"
+         }
+      ],
+      "holds" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         },
+         {
+            "comment" : "/**\n * The class holds details of the contact point.\n * @author saharan\n */",
+            "subject" : "public class ManifoldPoint {"
+         },
+         {
+            "comment" : "/**\n * The position of this manifold point.\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The position in the first shape's coordinate.\n */",
+            "subject" : "public var localPoint1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The position in the second shape's coordinate.\n */",
+            "subject" : "public var localPoint2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The normal vector of this manifold point.\n */",
+            "subject" : "public var normal:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The tangent vector of this manifold point.\n */",
+            "subject" : "public var tangent:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The binormal vector of this manifold point.\n */",
+            "subject" : "public var binormal:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The impulse in normal direction.\n */",
+            "subject" : "public var normalImpulse:Number;"
+         },
+         {
+            "comment" : "/**\n * The impulse in tangent direction.\n */",
+            "subject" : "public var tangentImpulse:Number;"
+         },
+         {
+            "comment" : "/**\n * The impulse in binormal direction.\n */",
+            "subject" : "public var binormalImpulse:Number;"
+         },
+         {
+            "comment" : "/**\n * The denominator in normal direction.\n */",
+            "subject" : "public var normalDenominator:Number;"
+         },
+         {
+            "comment" : "/**\n * The denominator in tangent direction.\n */",
+            "subject" : "public var tangentDenominator:Number;"
+         },
+         {
+            "comment" : "/**\n * The denominator in binormal direction.\n */",
+            "subject" : "public var binormalDenominator:Number;"
+         },
+         {
+            "comment" : "/**\n * Whether this manifold point is persisting or not.\n */",
+            "subject" : "public var warmStarted:Boolean;"
+         },
+         {
+            "comment" : "/**\n * The depth of penetration.\n */",
+            "subject" : "public var penetration:Number;"
+         }
+      ],
+      "ContactConstraint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         },
+         {
+            "comment" : "/**\n * ...\n * @author saharan\n */",
+            "subject" : "public class ContactConstraint extends Constraint {"
+         },
+         {
+            "comment" : "/**\n * The contact manifold of the constraint.\n */",
+            "subject" : "public var manifold:ContactManifold;"
+         },
+         {
+            "comment" : "/**\n * The coefficient of restitution of the constraint.\n */",
+            "subject" : "public var restitution:Number;"
+         },
+         {
+            "comment" : "/**\n * The coefficient of friction of the constraint.\n */",
+            "subject" : "public var friction:Number;"
+         },
+         {
+            "comment" : "/**\n * Attach the constraint to the bodies.\n */",
+            "subject" : "public function attach():void {"
+         },
+         {
+            "comment" : "/**\n * Detach the constraint from the bodies.\n */",
+            "subject" : "public function detach():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "ContactManifold" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         },
+         {
+            "comment" : "/**\n * A contact manifold between two shapes.\n * @author saharan\n */",
+            "subject" : "public class ContactManifold {"
+         },
+         {
+            "comment" : "/**\n * The first rigid body.\n */",
+            "subject" : "public var body1:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The second rigid body.\n */",
+            "subject" : "public var body2:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The manifold points.\n */",
+            "subject" : "public var points:Vector.<ManifoldPoint>;"
+         },
+         {
+            "comment" : "/**\n * The number of manifold points.\n */",
+            "subject" : "public var numPoints:uint;"
+         },
+         {
+            "comment" : "/**\n * Reset the manifold.\n * @paramshape1\n * @paramshape2\n */",
+            "subject" : "public function reset(shape1:Shape, shape2:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * Add a point into this manifold.\n * @paramx\n * @paramy\n * @paramz\n * @paramnormalX\n * @paramnormalY\n * @paramnormalZ\n * @parampenetration\n * @paramflip\n */",
+            "subject" : "public function addPoint(x:Number, y:Number, z:Number, normalX:Number, normalY:Number, normalZ:Number, penetration:Number, flip:Boolean):void {"
+         }
+      ],
+      "ContactPointDataBuffer" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         }
+      ],
+      "ImpulseDataBuffer" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         }
+      ],
+      "ContactLink" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         },
+         {
+            "comment" : "/**\n * A link list of contacts.\n * @author saharan\n */",
+            "subject" : "public class ContactLink {"
+         },
+         {
+            "comment" : "/**\n * The previous contact link.\n */",
+            "subject" : "public var prev:ContactLink;"
+         },
+         {
+            "comment" : "/**\n * The next contact link.\n */",
+            "subject" : "public var next:ContactLink;"
+         },
+         {
+            "comment" : "/**\n * The shape of the contact.\n */",
+            "subject" : "public var shape:Shape;"
+         },
+         {
+            "comment" : "/**\n * The other rigid body.\n */",
+            "subject" : "public var body:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The contact of the link.\n */",
+            "subject" : "public var contact:Contact;"
+         }
+      ]
+   },
+   "com.element.oimo.glmini" : {
+      "OimoGLMini" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.glmini {"
+         },
+         {
+            "comment" : "/**\n * A simple 3d engine.\n * @author saharan\n */",
+            "subject" : "public class OimoGLMini {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.collision.broadphase" : {
+      "Proxy" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase {"
+         },
+         {
+            "comment" : "/**\n * A proxy is used for broad-phase collecting pairs that can be colliding.\n */",
+            "subject" : "public class Proxy {"
+         },
+         {
+            "comment" : "/**\n * The parent shape.\n */",
+            "subject" : "public var shape:Shape;"
+         },
+         {
+            "comment" : "/**\n * The axis-aligned bounding box.\n */",
+            "subject" : "public var aabb:AABB;"
+         },
+         {
+            "comment" : "/**\n * Update the proxy.\n */",
+            "subject" : "public function update():void {"
+         }
+      ],
+      "BasicProxy" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase {"
+         },
+         {
+            "comment" : "/**\n * A basic implementation of proxies.\n * @author saharan\n */",
+            "subject" : "public class BasicProxy extends Proxy {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function update():void {"
+         }
+      ],
+      "Pair" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase {"
+         },
+         {
+            "comment" : "/**\n * A pair of shapes that may collide.\n * @author saharan\n */",
+            "subject" : "public class Pair {"
+         },
+         {
+            "comment" : "/**\n * The first shape.\n */",
+            "subject" : "public var shape1:Shape;"
+         },
+         {
+            "comment" : "/**\n * The second shape.\n */",
+            "subject" : "public var shape2:Shape;"
+         }
+      ],
+      "BroadPhase" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase {"
+         },
+         {
+            "comment" : "/**\n * The broad-phase is used for collecting all possible pairs for collision.\n */",
+            "subject" : "public class BroadPhase {"
+         },
+         {
+            "comment" : "/**\n * Brute force broad-phase algorithm.\n */",
+            "subject" : "public static const BROAD_PHASE_BRUTE_FORCE:int = 1;"
+         },
+         {
+            "comment" : "/**\n * Sweep and prune broad-phase algorithm.\n */",
+            "subject" : "public static const BROAD_PHASE_SWEEP_AND_PRUNE:int = 2;"
+         },
+         {
+            "comment" : "/**\n * Dynamic bounding volume tree broad-phase algorithm.\n */",
+            "subject" : "public static const BROAD_PHASE_DYNAMIC_BOUNDING_VOLUME_TREE:int = 3;"
+         },
+         {
+            "comment" : "/**\n * The pairs whose proxies are overlapping.\n */",
+            "subject" : "public var pairs:Vector.<Pair>;"
+         },
+         {
+            "comment" : "/**\n * The number of pairs.\n */",
+            "subject" : "public var numPairs:uint;"
+         },
+         {
+            "comment" : "/**\n * The number of pair checks.\n */",
+            "subject" : "public var numPairChecks:uint;"
+         },
+         {
+            "comment" : "/**\n * Create a new proxy.\n * @paramshape\n * @return\n */",
+            "subject" : "public function createProxy(shape:Shape):Proxy {"
+         },
+         {
+            "comment" : "/**\n * Add the proxy into the broad-phase.\n * @paramproxy\n */",
+            "subject" : "public function addProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * Remove the proxy from the broad-phase.\n * @paramproxy\n */",
+            "subject" : "public function removeProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * Returns whether the pair is available or not.\n * @params1\n * @params2\n * @return\n */",
+            "subject" : "public function isAvailablePair(s1:Shape, s2:Shape):Boolean {"
+         },
+         {
+            "comment" : "/**\n * Detect overlapping pairs.\n */",
+            "subject" : "public function detectPairs():void {"
+         }
+      ],
+      "BruteForceBroadPhase" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase {"
+         },
+         {
+            "comment" : "/**\n * A broad-phase algorithm with brute-force search.\n * This always checks for all possible pairs.\n */",
+            "subject" : "public class BruteForceBroadPhase extends BroadPhase {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function createProxy(shape:Shape):Proxy {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function addProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function removeProxy(proxy:Proxy):void {"
+         }
+      ],
+      "AABB" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broadphase {"
+         },
+         {
+            "comment" : "/**\n * An axis-aligned bounding box.\n * @author saharan\n */",
+            "subject" : "public class AABB {"
+         },
+         {
+            "comment" : "/**\n * Set this AABB to the combined AABB of aabb1 and aabb2.\n * @paramaabb1\n * @paramaabb2\n */",
+            "subject" : "public function combine(aabb1:AABB, aabb2:AABB):void {"
+         },
+         {
+            "comment" : "/**\n * Get the surface area.\n * @return\n */",
+            "subject" : "public function surfaceArea():Number {"
+         },
+         {
+            "comment" : "/**\n * Get whether the AABB intersects with the point or not.\n * @paramx\n * @paramy\n * @paramz\n * @return\n */",
+            "subject" : "public function intersectsWithPoint(x:Number, y:Number, z:Number):Boolean {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.constraint.joint.base" : {
+      "TranslationalConstraint" : [
+         {
+            "comment" : "/**\n * A translational constraint for various joints.\n * @author saharan\n */",
+            "subject" : "public class TranslationalConstraint {"
+         }
+      ],
+      "LinearConstraint" : [
+         {
+            "comment" : "/**\n * A linear constraint for all axes for various joints.\n * @author saharan\n */",
+            "subject" : "public class LinearConstraint {"
+         }
+      ],
+      "Translational3Constraint" : [
+         {
+            "comment" : "/**\n * A three-axis translational constraint for various joints.\n * @author saharan\n */",
+            "subject" : "public class Translational3Constraint {"
+         }
+      ],
+      "RotationalConstraint" : [
+         {
+            "comment" : "/**\n * A rotational constraint for various joints.\n * @author saharan\n */",
+            "subject" : "public class RotationalConstraint {"
+         }
+      ],
+      "Rotational3Constraint" : [
+         {
+            "comment" : "/**\n * A three-axis rotational constraint for various joints.\n * @author saharan\n */",
+            "subject" : "public class Rotational3Constraint {"
+         }
+      ],
+      "AngularConstraint" : [
+         {
+            "comment" : "/**\n * An angular constraint for all axes for various joints.\n * @author saharan\n */",
+            "subject" : "public class AngularConstraint {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.constraint.joint" : {
+      "BallAndSocketJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * A ball-and-socket joint limits relative translation on two anchor points on rigid bodies.\n * @author saharan\n */",
+            "subject" : "public class BallAndSocketJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "Joint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * Joints are used to constrain the motion between two rigid bodies.\n * @author saharan\n */",
+            "subject" : "public class Joint extends Constraint {"
+         },
+         {
+            "comment" : "/**\n * Distance joint\n */",
+            "subject" : "public static const JOINT_DISTANCE:uint = 0x1;"
+         },
+         {
+            "comment" : "/**\n * Ball-and-socket joint\n */",
+            "subject" : "public static const JOINT_BALL_AND_SOCKET:uint = 0x2;"
+         },
+         {
+            "comment" : "/**\n * Hinge joint\n */",
+            "subject" : "public static const JOINT_HINGE:uint = 0x3;"
+         },
+         {
+            "comment" : "/**\n * Wheel joint\n */",
+            "subject" : "public static const JOINT_WHEEL:uint = 0x4;"
+         },
+         {
+            "comment" : "/**\n * Slider joint\n */",
+            "subject" : "public static const JOINT_SLIDER:uint = 0x5;"
+         },
+         {
+            "comment" : "/**\n * Prismatic joint\n */",
+            "subject" : "public static const JOINT_PRISMATIC:uint = 0x6;"
+         },
+         {
+            "comment" : "/**\n * The type of the joint.\n */",
+            "subject" : "public var type:uint;"
+         },
+         {
+            "comment" : "/**\n * Whether allow collision between connected rigid bodies or not.\n */",
+            "subject" : "public var allowCollision:Boolean;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the first rigid body in local coordinate system.\n */",
+            "subject" : "public var localAnchorPoint1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the second rigid body in local coordinate system.\n */",
+            "subject" : "public var localAnchorPoint2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the first rigid body in world coordinate system relative to the body's origin.\n */",
+            "subject" : "public var relativeAnchorPoint1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the second rigid body in world coordinate system relative to the body's origin.\n */",
+            "subject" : "public var relativeAnchorPoint2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the first rigid body in world coordinate system.\n */",
+            "subject" : "public var anchorPoint1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the second rigid body in world coordinate system.\n */",
+            "subject" : "public var anchorPoint2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The previous joint in the world.\n */",
+            "subject" : "public var prev:Joint;"
+         },
+         {
+            "comment" : "/**\n * The next joint in the world.\n */",
+            "subject" : "public var next:Joint;"
+         },
+         {
+            "comment" : "/**\n * Update all the anchor points.\n */",
+            "subject" : "public function updateAnchorPoints():void {"
+         },
+         {
+            "comment" : "/**\n * Attach the joint to the bodies.\n */",
+            "subject" : "public function attach():void {"
+         },
+         {
+            "comment" : "/**\n * Attach the joint from the bodies.\n */",
+            "subject" : "public function detach():void {"
+         },
+         {
+            "comment" : "/**\n * Awake the bodies.\n */",
+            "subject" : "public function awake():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "SliderJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * A slider joint allows for relative translation and relative rotation between two rigid bodies along the axis.\n * @author saharan\n */",
+            "subject" : "public class SliderJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * The first axis in local coordinate system.\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The second axis in local coordinate system.\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The limit and motor for the rotation.\n */",
+            "subject" : "public var rotationalLimitMotor:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * The limit and motor for the translation.\n */",
+            "subject" : "public var translationalLimitMotor:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "PrismaticJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * A prismatic joint allows only for relative translation of rigid bodies along the axis.\n * @author saharan\n */",
+            "subject" : "public class PrismaticJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * The axis in the first body's coordinate system.\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The axis in the second body's coordinate system.\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The translational limit and motor information of the joint.\n */",
+            "subject" : "public var limitMotor:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "JointConfig" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * A joint configuration holds all configuration data for constructing a joint.\n * Joint configurations can be reused safely.\n * @author saharan\n */",
+            "subject" : "public class JointConfig {"
+         },
+         {
+            "comment" : "/**\n * The first rigid body of the joint.\n */",
+            "subject" : "public var body1:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The second rigid body of the joint.\n */",
+            "subject" : "public var body2:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the first rigid body in local coordinate system.\n */",
+            "subject" : "public var localAnchorPoint1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The anchor point on the second rigid body in local coordinate system.\n */",
+            "subject" : "public var localAnchorPoint2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The axis in the first body's coordinate system.\n * This property is available in some joints.\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The axis in the second body's coordinate system.\n * This property is available in some joints.\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * Whether allow collision between connected rigid bodies or not.\n */",
+            "subject" : "public var allowCollision:Boolean;"
+         }
+      ],
+      "LimitMotor" : [
+         {
+            "comment" : "/**\n * An information of limit and motor.\n * @author saharan\n */",
+            "subject" : "public class LimitMotor {"
+         },
+         {
+            "comment" : "/**\n * The current angle for rotational constraints.\n */",
+            "subject" : "public var angle:Number;"
+         },
+         {
+            "comment" : "/**\n * The axis of the constraint.\n */",
+            "subject" : "public var axis:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The lower limit. Set lower > upper to disable.\n */",
+            "subject" : "public var lowerLimit:Number;"
+         },
+         {
+            "comment" : "/**\n * The upper limit. Set lower > upper to disable.\n */",
+            "subject" : "public var upperLimit:Number;"
+         },
+         {
+            "comment" : "/**\n * The target motor speed.\n */",
+            "subject" : "public var motorSpeed:Number;"
+         },
+         {
+            "comment" : "/**\n * The maximum motor force or torque. Set 0 to disable.\n */",
+            "subject" : "public var maxMotorForce:Number;"
+         },
+         {
+            "comment" : "/**\n * The frequency of the spring. Set 0 to disable.\n */",
+            "subject" : "public var frequency:Number;"
+         },
+         {
+            "comment" : "/**\n * The damping ratio of the spring. Set 0 for no damping, 1 for critical damping.\n */",
+            "subject" : "public var dampingRatio:Number;"
+         },
+         {
+            "comment" : "/**\n * Set limit data into this constraint.\n * @paramlowerLimit\n * @paramupperLimit\n */",
+            "subject" : "public function setLimit(lowerLimit:Number, upperLimit:Number):void {"
+         },
+         {
+            "comment" : "/**\n * Set motor data into this constraint.\n * @parammotorSpeed\n * @parammaxMotorForce\n */",
+            "subject" : "public function setMotor(motorSpeed:Number, maxMotorForce:Number):void {"
+         },
+         {
+            "comment" : "/**\n * Set spring data into this constraint.\n * @paramfrequency\n * @paramdampingRatio\n */",
+            "subject" : "public function setSpring(frequency:Number, dampingRatio:Number):void {"
+         }
+      ],
+      "HingeJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * A hinge joint allows only for relative rotation of rigid bodies along the axis.\n * @author saharan\n */",
+            "subject" : "public class HingeJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * The axis in the first body's coordinate system.\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The axis in the second body's coordinate system.\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The rotational limit and motor information of the joint.\n */",
+            "subject" : "public var limitMotor:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "WheelJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * A wheel joint allows for relative rotation between two rigid bodies along two axes.\n * The wheel joint also allows for relative translation for the suspension.\n */",
+            "subject" : "public class WheelJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * The first axis in local coordinate system.\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The second axis in local coordinate system.\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The first rotational limit and motor information of the joint.\n */",
+            "subject" : "public var rotationalLimitMotor1:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * The second rotational limit and motor information of the joint.\n */",
+            "subject" : "public var rotationalLimitMotor2:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * The translational limit and motor information of the joint.\n */",
+            "subject" : "public var translationalLimitMotor:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "DistanceJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * A distance joint limits the distance between two anchor points on rigid bodies.\n * @author saharan\n */",
+            "subject" : "public class DistanceJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * The limit and motor information of the joint.\n */",
+            "subject" : "public var limitMotor:LimitMotor;"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "JointLink" : [
+         {
+            "comment" : "/**\n * A link list of joints.\n * @author saharan\n */",
+            "subject" : "public class JointLink {"
+         },
+         {
+            "comment" : "/**\n * The previous joint link.\n */",
+            "subject" : "public var prev:JointLink;"
+         },
+         {
+            "comment" : "/**\n * The next joint link.\n */",
+            "subject" : "public var next:JointLink;"
+         },
+         {
+            "comment" : "/**\n * The other rigid body connected to the joint.\n */",
+            "subject" : "public var body:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The joint of the link.\n */",
+            "subject" : "public var joint:Joint;"
+         }
+      ]
+   },
+   "com.element.oimo.physics.dynamics" : {
+      "RigidBody" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.dynamics {"
+         },
+         {
+            "comment" : "/**\n * 剛体のクラスです。\n * 剛体は衝突処理用に単数あるいは複数の形状を持ち、\n * それぞれ個別にパラメーターを設定できます。\n * @author saharan\n */",
+            "subject" : "public class RigidBody {"
+         },
+         {
+            "comment" : "/**\n * 動的な剛体を表す剛体の種類です。\n */",
+            "subject" : "public static const BODY_DYNAMIC:uint = 0x1;"
+         },
+         {
+            "comment" : "/**\n * 静的な剛体を表す剛体の種類です。\n */",
+            "subject" : "public static const BODY_STATIC:uint = 0x2;"
+         },
+         {
+            "comment" : "/**\n * 一つの剛体に追加できる形状の最大数です。\n */",
+            "subject" : "public static const MAX_SHAPES:uint = 64;"
+         },
+         {
+            "comment" : "/**\n * 剛体の種類を表します。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 剛体の種類を変更する場合は、必ず\n * setupMass メソッドの引数に設定したい種類を指定してください。\n */",
+            "subject" : "public var type:uint;"
+         },
+         {
+            "comment" : "/**\n * この剛体が動的な剛体であるかどうかを示します。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var isDynamic:Boolean;"
+         },
+         {
+            "comment" : "/**\n * この剛体が静的な剛体であるかどうかを示します。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var isStatic:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 重心のワールド座標です。\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 姿勢を表すクォータニオンです。\n */",
+            "subject" : "public var orientation:Quat;"
+         },
+         {
+            "comment" : "/**\n * スリープ直前での重心のワールド座標です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var sleepPosition:Vec3;"
+         },
+         {
+            "comment" : "/**\n * スリープ直前での姿勢を表すクォータニオンです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var sleepOrientation:Quat;"
+         },
+         {
+            "comment" : "/**\n * 並進速度です。\n */",
+            "subject" : "public var linearVelocity:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 角速度です。\n */",
+            "subject" : "public var angularVelocity:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 姿勢を表す回転行列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 回転行列は、ステップ毎にクォータニオンから再計算されます。\n */",
+            "subject" : "public var rotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 質量です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 質量は setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var mass:Number;"
+         },
+         {
+            "comment" : "/**\n * 質量の逆数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 質量は setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var inverseMass:Number;"
+         },
+         {
+            "comment" : "/**\n * ワールド系での慣性テンソルの逆行列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * ワールド系での慣性テンソルの逆行列は、ステップ毎に\n * 姿勢と初期状態の慣性テンソルの逆数から再計算されます。\n */",
+            "subject" : "public var inverseInertia:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 初期状態での慣性テンソルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 慣性テンソルは setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var localInertia:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 初期状態での慣性テンソルの逆行列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 慣性テンソルは setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var inverseLocalInertia:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 剛体に含まれている形状の配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var shapes:Shape;"
+         },
+         {
+            "comment" : "/**\n * 剛体に含まれている形状の数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numShapes:uint;"
+         },
+         {
+            "comment" : "/**\n * 剛体が追加されているワールドです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var parent:World;"
+         },
+         {
+            "comment" : "/**\n * 剛体に接続されているジョイントのリンク配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var jointLink:JointLink;"
+         },
+         {
+            "comment" : "/**\n * 剛体に接続されているジョイントの数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numJoints:uint;"
+         },
+         {
+            "comment" : "/**\n * 剛体がシミュレーションアイランドに追加されたかどうかを示します。\n * この変数は内部でのみ使用されます。\n */",
+            "subject" : "public var addedToIsland:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体が静止してからの時間です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var sleepTime:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体がスリープ状態であるかどうかを示します。\n * <strong>この変数は外部から変更しないでください。</strong>\n * 剛体をスリープさせる場合は sleep メソッドを、\n * 剛体のスリープ状態を解除する場合は awake メソッドを呼び出してください。\n */",
+            "subject" : "public var sleeping:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体をスリープさせるかを示します。\n * シミュレーションアイランド内の全ての剛体が静止している状態が一定時間続くと、\n * そのシミュレーションアイランドはスリープ状態に入ります。\n * スリープしている剛体は awake メソッドが呼び出されるか、\n * 外部からの干渉を受けるまで、スリープ状態が解除されることはありません。\n */",
+            "subject" : "public var allowSleep:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 新しく RigidBody オブジェクトを作成します。\n * 回転成分を指定することもできます。\n * @paramx\n * @paramy\n * @paramz\n * @paramrad ラジアンでの回転角度\n * @paramax 回転軸の x 成分\n * @paramay 回転軸の y 成分\n * @paramaz 回転軸の z 成分\n */",
+            "subject" : "public function RigidBody(x:Number = 0, y:Number = 0, z:Number = 0, rad:Number = 0, ax:Number = 0, ay:Number = 0, az:Number = 0) {"
+         },
+         {
+            "comment" : "/**\n * 剛体に形状を追加します。\n * 形状を追加した場合、次のステップ開始までに setupMass メソッドを呼び出してください。\n * @paramshape 追加する形状\n */",
+            "subject" : "public function addShape(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * 剛体から形状を削除します。\n * 形状を削除した場合、次のステップ開始までに setupMass メソッドを呼び出してください。\n * @paramshape 削除する形状\n */",
+            "subject" : "public function removeShape(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * Calulates mass datas(center of gravity, mass, moment inertia, etc...).\n * If the parameter type is set to BODY_STATIC, the rigid body will be fixed to the space.\n * If the parameter adjustPosition is set to true, the shapes' relative positions and\n * the rigid body's position will be adjusted to the center of gravity.\n * @paramtype\n * @paramadjustPosition\n */",
+            "subject" : "public function setupMass(type:uint = BODY_DYNAMIC, adjustPosition:Boolean = true):void {"
+         },
+         {
+            "comment" : "/**\n * Awake the rigid body.\n */",
+            "subject" : "public function awake():void {"
+         },
+         {
+            "comment" : "/**\n * Sleep the rigid body.\n */",
+            "subject" : "public function sleep():void {"
+         },
+         {
+            "comment" : "/**\n * Get whether the rigid body has not any connection with others.\n * @return\n */",
+            "subject" : "public function isLonely():Boolean {"
+         },
+         {
+            "comment" : "/**\n * 剛体の運動を時間積分し、形状などの情報を更新します。\n * このメソッドはワールドのステップを呼ぶと自動で呼び出されるので、\n * 通常は外部から呼ぶ必要はありません。\n * @paramtimeStep 時間刻み幅\n */",
+            "subject" : "public function updatePosition(timeStep:Number):void {"
+         }
+      ],
+      "World" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.dynamics {"
+         },
+         {
+            "comment" : "/**\n * 物理演算ワールドのクラスです。\n * 全ての物理演算オブジェクトはワールドに追加する必要があります。\n * @author saharan\n */",
+            "subject" : "public class World {"
+         },
+         {
+            "comment" : "/**\n * The rigid body list.\n */",
+            "subject" : "public var rigidBodies:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The number of rigid bodies.\n */",
+            "subject" : "public var numRigidBodies:uint;"
+         },
+         {
+            "comment" : "/**\n * The contact list.\n */",
+            "subject" : "public var contacts:Contact;"
+         },
+         {
+            "comment" : "/**\n * The number of contacts.\n */",
+            "subject" : "public var numContacts:uint;"
+         },
+         {
+            "comment" : "/**\n * The number of contact points.\n */",
+            "subject" : "public var numContactPoints:uint;"
+         },
+         {
+            "comment" : "/**\n * The joint list.\n */",
+            "subject" : "public var joints:Joint;"
+         },
+         {
+            "comment" : "/**\n * The number of joints.\n */",
+            "subject" : "public var numJoints:uint;"
+         },
+         {
+            "comment" : "/**\n * The number of simulation islands.\n */",
+            "subject" : "public var numIslands:uint;"
+         },
+         {
+            "comment" : "/**\n * 1回のステップで進む時間の長さです。\n */",
+            "subject" : "public var timeStep:Number;"
+         },
+         {
+            "comment" : "/**\n * The gravity in the world.\n */",
+            "subject" : "public var gravity:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The number of iterations for constraint solvers.\n */",
+            "subject" : "public var numIterations:int;"
+         },
+         {
+            "comment" : "/**\n * Whether the constraints randomizer is enabled or not.\n */",
+            "subject" : "public var enableRandomizer:Boolean;"
+         },
+         {
+            "comment" : "/**\n * パフォーマンスの詳細情報です。\n * 計算に要した時間などが記録されています。\n */",
+            "subject" : "public var performance:Performance;"
+         },
+         {
+            "comment" : "/**\n * 詳細な衝突判定をできるだけ削減するために使用される広域衝突判定です。\n */",
+            "subject" : "public var broadPhase:BroadPhase;"
+         },
+         {
+            "comment" : "/**\n * Reset the randomizer and remove all rigid bodies, shapes, joints and any object from the world.\n */",
+            "subject" : "public function clear():void {"
+         },
+         {
+            "comment" : "/**\n * ワールドに剛体を追加します。\n * 追加された剛体はステップ毎の演算対象になります。\n * @paramrigidBody 追加する剛体\n */",
+            "subject" : "public function addRigidBody(rigidBody:RigidBody):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドから剛体を削除します。\n * 削除された剛体はステップ毎の演算対象から外されます。\n * @paramrigidBody 削除する剛体\n */",
+            "subject" : "public function removeRigidBody(rigidBody:RigidBody):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドに形状を追加します。\n * <strong>剛体をワールドに追加、およびワールドに追加されている剛体に形状を追加すると、\n * 自動で形状もワールドに追加されるので、このメソッドは外部から呼ばないでください。</strong>\n * @paramshape 追加する形状\n */",
+            "subject" : "public function addShape(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドから形状を削除します。\n * <strong>剛体をワールドから削除、およびワールドに追加されている剛体から形状を削除すると、\n * 自動で形状もワールドから削除されるので、このメソッドは外部から呼ばないでください。</strong>\n * @paramshape 削除する形状\n */",
+            "subject" : "public function removeShape(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドにジョイントを追加します。\n * 追加されたジョイントはステップ毎の演算対象になります。\n * @paramjoint 追加するジョイント\n */",
+            "subject" : "public function addJoint(joint:Joint):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドからジョイントを削除します。\n * 削除されたジョイントはステップ毎の演算対象から外されます。\n * @paramjoint 削除するジョイント\n */",
+            "subject" : "public function removeJoint(joint:Joint):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドの時間をタイムステップ秒だけ進めます。\n */",
+            "subject" : "public function step():void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.collision.narrowphase" : {
+      "CollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrowphase {"
+         },
+         {
+            "comment" : "/**\n * A collision detector detects collisions between two shapes.\n * @author saharan\n */",
+            "subject" : "public class CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * Whether the collision detector flips two shapes in detectCollision or not.\n */",
+            "subject" : "public var flip:Boolean;"
+         },
+         {
+            "comment" : "/**\n * Detect collision between two shapes.\n * @paramshape1\n * @paramshape2\n * @parammanifold\n */",
+            "subject" : "public function detectCollision(shape1:Shape, shape2:Shape, manifold:ContactManifold):void {"
+         }
+      ],
+      "BoxBoxCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrowphase {"
+         },
+         {
+            "comment" : "/**\n * A collision detector which detects collisions between two boxes.\n * @author saharan\n */",
+            "subject" : "public class BoxBoxCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, manifold:ContactManifold):void {"
+         }
+      ],
+      "SphereBoxCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrowphase {"
+         },
+         {
+            "comment" : "/**\n * A collision detector which detects collisions between sphere and box.\n * @author saharan\n */",
+            "subject" : "public class SphereBoxCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, manifold:ContactManifold):void {"
+         }
+      ],
+      "SphereSphereCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrowphase {"
+         },
+         {
+            "comment" : "/**\n * A collision detector which detects collisions between two spheres.\n * @author saharan\n */",
+            "subject" : "public class SphereSphereCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, manifold:ContactManifold):void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.collision.shape" : {
+      "SphereShape" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * A sphere shape.\n * @author saharan\n */",
+            "subject" : "public class SphereShape extends Shape {"
+         },
+         {
+            "comment" : "/**\n * The radius of the shape.\n */",
+            "subject" : "public var radius:Number;"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function calculateMassInfo(out:MassInfo):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function updateProxy():void {"
+         }
+      ],
+      "Shape" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * A shape is used to detect collisions of rigid bodies.\n * @author saharan\n */",
+            "subject" : "public class Shape {"
+         },
+         {
+            "comment" : "/**\n * Global identification of next shape.\n * This will be incremented every time a shape is created.\n */",
+            "subject" : "public static var nextID:uint = 0;"
+         },
+         {
+            "comment" : "/**\n * Sphere shape.\n */",
+            "subject" : "public static const SHAPE_SPHERE:uint = 0x1;"
+         },
+         {
+            "comment" : "/**\n * Box shape.\n */",
+            "subject" : "public static const SHAPE_BOX:uint = 0x2;"
+         },
+         {
+            "comment" : "/**\n * The previous shape in parent rigid body.\n */",
+            "subject" : "public var prev:Shape;"
+         },
+         {
+            "comment" : "/**\n * The next shape in parent rigid body.\n */",
+            "subject" : "public var next:Shape;"
+         },
+         {
+            "comment" : "/**\n * The global identification of the shape.\n * This value should be unique to the shape.\n */",
+            "subject" : "public var id:uint;"
+         },
+         {
+            "comment" : "/**\n * The type of the shape.\n */",
+            "subject" : "public var type:uint;"
+         },
+         {
+            "comment" : "/**\n * The center of gravity of the shape in world coordinate system.\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The rotation matrix of the shape in world coordinate system.\n */",
+            "subject" : "public var rotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * The position of the shape in parent's coordinate system.\n */",
+            "subject" : "public var relativePosition:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The rotation matrix of the shape in parent's coordinate system.\n */",
+            "subject" : "public var relativeRotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * The coefficient of friction of the shape.\n */",
+            "subject" : "public var friction:Number;"
+         },
+         {
+            "comment" : "/**\n * The coefficient of restitution of the shape.\n */",
+            "subject" : "public var restitution:Number;"
+         },
+         {
+            "comment" : "/**\n * The density of the shape.\n */",
+            "subject" : "public var density:Number;"
+         },
+         {
+            "comment" : "/**\n * The axis-aligned bounding box of the shape.\n */",
+            "subject" : "public var aabb:AABB;"
+         },
+         {
+            "comment" : "/**\n * The proxy of the shape.\n * This is used for broad-phase collision detection.\n */",
+            "subject" : "public var proxy:Proxy;"
+         },
+         {
+            "comment" : "/**\n * The parent rigid body of the shape.\n */",
+            "subject" : "public var parent:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * The linked list of the contacts with the shape.\n */",
+            "subject" : "public var contactLink:ContactLink;"
+         },
+         {
+            "comment" : "/**\n * The number of the contacts with the shape.\n */",
+            "subject" : "public var numContacts:uint;"
+         },
+         {
+            "comment" : "/**\n * The bits of the collision groups to which the shape belongs.\n */",
+            "subject" : "public var belongsTo:int;"
+         },
+         {
+            "comment" : "/**\n * The bits of the collision groups with which the shape collides.\n */",
+            "subject" : "public var collidesWith:int;"
+         },
+         {
+            "comment" : "/**\n * Calculate the mass information of the shape.\n * @paramout\n */",
+            "subject" : "public function calculateMassInfo(out:MassInfo):void {"
+         },
+         {
+            "comment" : "/**\n * Update the proxy of the shape.\n */",
+            "subject" : "public function updateProxy():void {"
+         }
+      ],
+      "holds" : [
+         {
+            "comment" : "/**\n * This class holds mass information of a shape.\n * @author saharan\n */",
+            "subject" : "public class MassInfo {"
+         },
+         {
+            "comment" : "/**\n * Mass of the shape.\n */",
+            "subject" : "public var mass:Number;"
+         },
+         {
+            "comment" : "/**\n * The moment inertia of the shape.\n */",
+            "subject" : "public var inertia:Mat33;"
+         }
+      ],
+      "ShapeConfig" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * A shape configuration holds common configuration data for constructing a shape.\n * Shape configurations can be reused safely.\n * @author saharan\n */",
+            "subject" : "public class ShapeConfig {"
+         },
+         {
+            "comment" : "/**\n * The position of the shape in parent's coordinate system.\n */",
+            "subject" : "public var relativePosition:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The rotation matrix of the shape in parent's coordinate system.\n */",
+            "subject" : "public var relativeRotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * The coefficient of friction of the shape.\n */",
+            "subject" : "public var friction:Number;"
+         },
+         {
+            "comment" : "/**\n * The coefficient of restitution of the shape.\n */",
+            "subject" : "public var restitution:Number;"
+         },
+         {
+            "comment" : "/**\n * The density of the shape.\n */",
+            "subject" : "public var density:Number;"
+         },
+         {
+            "comment" : "/**\n * The bits of the collision groups to which the shape belongs.\n */",
+            "subject" : "public var belongsTo:int;"
+         },
+         {
+            "comment" : "/**\n * The bits of the collision groups with which the shape collides.\n */",
+            "subject" : "public var collidesWith:int;"
+         }
+      ],
+      "BoxShape" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * A box shape.\n * @author saharan\n */",
+            "subject" : "public class BoxShape extends Shape {"
+         },
+         {
+            "comment" : "/**\n * The width of the box.\n */",
+            "subject" : "public var width:Number;"
+         },
+         {
+            "comment" : "/**\n * The half-width of the box.\n */",
+            "subject" : "public var halfWidth:Number;"
+         },
+         {
+            "comment" : "/**\n * The height of the box.\n */",
+            "subject" : "public var height:Number;"
+         },
+         {
+            "comment" : "/**\n * The half-height of the box.\n */",
+            "subject" : "public var halfHeight:Number;"
+         },
+         {
+            "comment" : "/**\n * The depth of the box.\n */",
+            "subject" : "public var depth:Number;"
+         },
+         {
+            "comment" : "/**\n * The half-depth of the box.\n */",
+            "subject" : "public var halfDepth:Number;"
+         },
+         {
+            "comment" : "/**\n * The normalized direction vector of the width.\n */",
+            "subject" : "public var normalDirectionWidth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The normalized direction vector of the height.\n */",
+            "subject" : "public var normalDirectionHeight:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The normalized direction vector of the depth.\n */",
+            "subject" : "public var normalDirectionDepth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The direction vector of the half-width.\n */",
+            "subject" : "public var halfDirectionWidth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The direction vector of the half-height.\n */",
+            "subject" : "public var halfDirectionHeight:Vec3;"
+         },
+         {
+            "comment" : "/**\n * The direction vector of the half-depth.\n */",
+            "subject" : "public var halfDirectionDepth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function calculateMassInfo(out:MassInfo):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function updateProxy():void {"
+         }
+      ]
+   }
+}

@@ -1,0 +1,2082 @@
+{
+   "com.element.oimo.physics" : {
+      "OimoPhysics" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics {"
+         },
+         {
+            "comment" : "/**\n * OimoPhysics の情報のクラスです。\n * @author saharan\n */",
+            "subject" : "public final class OimoPhysics {"
+         },
+         {
+            "comment" : "/**\n * OimoPhysics のバージョンです。\n */",
+            "subject" : "public static const VERSION:String = \"1.0.0\";"
+         },
+         {
+            "comment" : "/**\n * OimoPhysics の説明です。\n */",
+            "subject" : "public static const DESCRIPTION:String = \"OimoPhysics \" + VERSION + \" (c) 2012 EL-EMENT saharan\";"
+         },
+         {
+            "comment" : "/**\n * OimoPhysics オブジェクトを作成することはできません。\n */",
+            "subject" : "public function OimoPhysics() {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.constraint" : {
+      "Constraint" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint {"
+         },
+         {
+            "comment" : "/**\n * 剛体の拘束を扱うクラスです。\n * 剛体間の接触やジョイントは全て拘束として処理されます。\n * @author saharan\n */",
+            "subject" : "public class Constraint {"
+         },
+         {
+            "comment" : "/**\n * この拘束の親となるワールドです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var parent:World;"
+         },
+         {
+            "comment" : "/**\n * 拘束の対象となる剛体1です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var body1:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * 拘束の対象となる剛体2です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var body2:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * この拘束がシミュレーションアイランドに追加されたかどうかを示します。\n * この変数は内部でのみ使用されます。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var addedToIsland:Boolean;"
+         },
+         {
+            "comment" : "/**\n * この拘束がスリープ状態かどうかを示します。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var sleeping:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 新しく Constraint オブジェクトを作成します。\n * <strong>このコンストラクタは外部から呼び出さないでください。</strong>\n */",
+            "subject" : "public function Constraint() {"
+         },
+         {
+            "comment" : "/**\n * 拘束処理の前に一度だけ呼び出すべきメソッドです。\n * @paramtimeStep 時間刻み幅\n * @paraminvTimeStep 時間刻み幅の逆数\n */",
+            "subject" : "public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * この拘束を処理します。\n * 通常このメソッドは繰り返し呼び出され、\n * 拘束の精度は繰り返し回数に左右されます。\n */",
+            "subject" : "public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * 拘束処理の後に一度だけ呼び出すべきメソッドです。\n */",
+            "subject" : "public function postSolve():void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.util" : {
+      "DebugDraw" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.util {"
+         },
+         {
+            "comment" : "/**\n * 簡易的なワールドの3D表示機能を持ったクラスです。\n * @author saharan\n */",
+            "subject" : "public class DebugDraw {"
+         },
+         {
+            "comment" : "/**\n * 新しい DebugDraw オブジェクトを生成します。\n * @paramwidth 画面の幅\n * @paramheight 画面の高さ\n */",
+            "subject" : "public function DebugDraw(width:uint, height:uint) {"
+         },
+         {
+            "comment" : "/**\n * Context3D の初期化時に呼び出します。\n * @paramcontext3D 使用する Context3D\n */",
+            "subject" : "public function setContext3D(context3D:Context3D):void {"
+         },
+         {
+            "comment" : "/**\n * 描画対象のワールドを設定します。\n * @paramworld\n */",
+            "subject" : "public function setWorld(world:World):void {"
+         },
+         {
+            "comment" : "/**\n * カメラ位置などを設定します。\n * 平行光源の向きもカメラの位置に合わせて調整されます。\n * @paramcamX カメラの x 座標\n * @paramcamY カメラの y 座標\n * @paramcamZ カメラの z 座標\n * @paramtargetX 注視点の x 座標\n * @paramtargetY 注視点の y 座標\n * @paramtargetZ 注視点の z 座標\n * @paramupX 上方向のベクトルの x 成分\n * @paramupY 上方向のベクトルの y 成分\n * @paramupZ 上方向のベクトルの z 成分\n */",
+            "subject" : "public function camera("
+         },
+         {
+            "comment" : "/**\n * 描画から除外する形状を追加します。\n * @paramshape 描画から除外する形状\n */",
+            "subject" : "public function addIgnore(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * 描画から除外した形状を全て削除します。\n */",
+            "subject" : "public function clearIgnores():void {"
+         },
+         {
+            "comment" : "/**\n * ワールドのレンダリングを行います。\n */",
+            "subject" : "public function render():void {"
+         }
+      ],
+      "Performance" : [
+         {
+            "comment" : "/**\n * ワールドが物理演算に要した時間などを記録するクラスです。\n * 特に表記がない場合、時間の単位はミリ秒です。\n * @author saharan\n */",
+            "subject" : "public class Performance {"
+         },
+         {
+            "comment" : "/**\n * 広域衝突判定に要した時間です。\n */",
+            "subject" : "public var broadPhaseTime:uint;"
+         },
+         {
+            "comment" : "/**\n * 詳細な衝突判定に要した時間です。\n */",
+            "subject" : "public var narrowPhaseTime:uint;"
+         },
+         {
+            "comment" : "/**\n * 拘束や積分の計算に要した時間です。\n */",
+            "subject" : "public var solvingTime:uint;"
+         },
+         {
+            "comment" : "/**\n * その他の更新に要した時間です。\n */",
+            "subject" : "public var updatingTime:uint;"
+         },
+         {
+            "comment" : "/**\n * ステップ計算に要した合計時間です。\n */",
+            "subject" : "public var totalTime:uint;"
+         },
+         {
+            "comment" : "/**\n * 新しく Performance オブジェクトを作成します。\n */",
+            "subject" : "public function Performance() {"
+         }
+      ]
+   },
+   "com.element.oimo.math" : {
+      "Vec3" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * 3次元のベクトルを扱うクラスです。\n * ベクトルは列ベクトルとして扱われます。\n * オブジェクトの不要な作成を避けるため、\n * 関数ではほとんどの演算結果は自身のオブジェクトに格納されます。\n * @author saharan\n */",
+            "subject" : "public class Vec3 {"
+         },
+         {
+            "comment" : "/**\n * x 成分です。\n */",
+            "subject" : "public var x:Number;"
+         },
+         {
+            "comment" : "/**\n * y 成分です。\n */",
+            "subject" : "public var y:Number;"
+         },
+         {
+            "comment" : "/**\n * z 成分です。\n */",
+            "subject" : "public var z:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しく Vec3 オブジェクトを作成します。\n * 引数を指定しない場合は、全ての値に0が格納されます。\n * @paramx 設定する x 成分\n * @paramy 設定する y 成分\n * @paramz 設定する z 成分\n */",
+            "subject" : "public function Vec3(x:Number = 0, y:Number = 0, z:Number = 0) {"
+         },
+         {
+            "comment" : "/**\n * このベクトルの値を指定された値で初期化します。\n * 引数を指定しない場合は、全ての値に0が格納されます。\n * @paramx 設定する x 成分\n * @paramy 設定する y 成分\n * @paramz 設定する z 成分\n * @return このオブジェクト\n */",
+            "subject" : "public function init(x:Number = 0, y:Number = 0, z:Number = 0):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルを v1 と v2 を加算したベクトルに設定します。\n * @paramv1 ベクトル1\n * @paramv2 ベクトル2\n * @return このオブジェクト\n */",
+            "subject" : "public function add(v1:Vec3, v2:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルを v1 から v2 を減算したベクトルに設定します。\n * @paramv1 ベクトル1\n * @paramv2 ベクトル2\n * @return このオブジェクト\n */",
+            "subject" : "public function sub(v1:Vec3, v2:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルを v を s 倍に拡張したベクトルに設定します。\n * @paramv ベクトル\n * @params スカラー\n * @return このオブジェクト\n */",
+            "subject" : "public function scale(v:Vec3, s:Number):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルと v との内積を返します。\n * @paramv ベクトル\n * @return 内積\n */",
+            "subject" : "public function dot(v:Vec3):Number {"
+         },
+         {
+            "comment" : "/**\n * このベクトルを v1 と v2 の外積のベクトルに設定します。\n * @paramv1 ベクトル1\n * @paramv2 ベクトル2\n * @return このオブジェクト\n */",
+            "subject" : "public function cross(v1:Vec3, v2:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルを m で v を変換したベクトルに設定します。\n * @paramm 行列\n * @paramv ベクトル\n * @return このオブジェクト\n */",
+            "subject" : "public function mulMat(m:Mat33, v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルを v を正規化したベクトルに設定します。\n * @paramv ベクトル\n * @return このオブジェクト\n */",
+            "subject" : "public function normalize(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルを v を反転したベクトルに設定します。\n * @paramv ベクトル\n * @return このオブジェクト\n */",
+            "subject" : "public function invert(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルの大きさを返します。\n * @return 大きさ\n */",
+            "subject" : "public function length():Number {"
+         },
+         {
+            "comment" : "/**\n * このベクトルの値を v からコピーします。\n * @paramv ベクトル\n * @return このオブジェクト\n */",
+            "subject" : "public function copy(v:Vec3):Vec3 {"
+         },
+         {
+            "comment" : "/**\n * この Vec3 オブジェクトを複製します。\n * @return 複製された Vec3 オブジェクト\n */",
+            "subject" : "public function clone():Vec3 {"
+         },
+         {
+            "comment" : "/**\n * このベクトルの文字列表現を返します。\n * @return このベクトルを表す文字列\n */",
+            "subject" : "public function toString():String {"
+         }
+      ],
+      "Mat33" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * 3行3列の要素を持つ行列を扱うクラスです。\n * この行列は、ある三次元座標系から別の三次元座標系への、平行移動を除く変換をサポートします。\n * 行列は右手系の行列として扱われます。\n * オブジェクトの不要な作成を避けるため、\n * 関数ではほとんどの演算結果は自身のオブジェクトに格納されます。\n * @author saharan\n */",
+            "subject" : "public class Mat33 {"
+         },
+         {
+            "comment" : "/**\n * 1行1列目の要素です。\n */",
+            "subject" : "public var e00:Number;"
+         },
+         {
+            "comment" : "/**\n * 1行2列目の要素です。\n */",
+            "subject" : "public var e01:Number;"
+         },
+         {
+            "comment" : "/**\n * 1行3列目の要素です。\n */",
+            "subject" : "public var e02:Number;"
+         },
+         {
+            "comment" : "/**\n * 2行1列目の要素です。\n */",
+            "subject" : "public var e10:Number;"
+         },
+         {
+            "comment" : "/**\n * 2行2列目の要素です。\n */",
+            "subject" : "public var e11:Number;"
+         },
+         {
+            "comment" : "/**\n * 2行3列目の要素です。\n */",
+            "subject" : "public var e12:Number;"
+         },
+         {
+            "comment" : "/**\n * 3行1列目の要素です。\n */",
+            "subject" : "public var e20:Number;"
+         },
+         {
+            "comment" : "/**\n * 3行2列目の要素です。\n */",
+            "subject" : "public var e21:Number;"
+         },
+         {
+            "comment" : "/**\n * 3行3列目の要素です。\n */",
+            "subject" : "public var e22:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しく Mat33 オブジェクトを作成します。\n * 引数を指定しない場合は、単位行列で初期化されます。\n * @parame00 設定する1行1列目の要素\n * @parame01 設定する1行2列目の要素\n * @parame02 設定する1行3列目の要素\n * @parame10 設定する2行1列目の要素\n * @parame11 設定する2行2列目の要素\n * @parame12 設定する2行3列目の要素\n * @parame20 設定する3行1列目の要素\n * @parame21 設定する3行2列目の要素\n * @parame22 設定する3行3列目の要素\n */",
+            "subject" : "public function Mat33("
+         },
+         {
+            "comment" : "/**\n * この行列を指定された値で初期化します。\n * 引数を指定しない場合は、単位行列で初期化されます。\n * @parame00 設定する1行1列目の要素\n * @parame01 設定する1行2列目の要素\n * @parame02 設定する1行3列目の要素\n * @parame10 設定する2行1列目の要素\n * @parame11 設定する2行2列目の要素\n * @parame12 設定する2行3列目の要素\n * @parame20 設定する3行1列目の要素\n * @parame21 設定する3行2列目の要素\n * @parame22 設定する3行3列目の要素\n * @return このオブジェクト\n */",
+            "subject" : "public function init("
+         },
+         {
+            "comment" : "/**\n * この行列を m1 と m2 を加算した行列に設定します。\n * @paramm1 行列1\n * @paramm2 行列2\n * @return このオブジェクト\n */",
+            "subject" : "public function add(m1:Mat33, m2:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m1 から m2 を減算した行列に設定します。\n * @paramm1 行列1\n * @paramm2 行列2\n * @return このオブジェクト\n */",
+            "subject" : "public function sub(m1:Mat33, m2:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m を s 倍に拡張した行列に設定します。\n * @paramm 行列\n * @params スカラー\n * @return このオブジェクト\n */",
+            "subject" : "public function scale(m:Mat33, s:Number):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m1 と m2 を合成した行列に設定します。\n * @paramm1 行列1\n * @paramm2 行列2\n * @return このオブジェクト\n */",
+            "subject" : "public function mul(m1:Mat33, m2:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m と拡大縮小行列を合成したものに設定します。\n * @paramm 行列\n * @paramsx x 方向の拡大率\n * @paramsy　y 方向の拡大率\n * @paramsz　z 方向の拡大率\n * @paramprepend 合成順序を逆にする場合は true\n * @return このオブジェクト\n */",
+            "subject" : "public function mulScale(m:Mat33, sx:Number, sy:Number, sz:Number, prepend:Boolean = false):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m と回転行列を合成したものに設定します。\n * @paramm 行列\n * @paramrad ラジアンでの回転角度\n * @paramax 回転軸の x 成分\n * @paramay 回転軸の y 成分\n * @paramaz 回転軸の z 成分\n * @paramprepend 合成順序を逆にする場合は true\n * @return このオブジェクト\n */",
+            "subject" : "public function mulRotate(m:Mat33, rad:Number, ax:Number, ay:Number, az:Number, prepend:Boolean = false):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m の転置行列に設定します。\n * @paramm 行列\n * @return このオブジェクト\n */",
+            "subject" : "public function transpose(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を q で表される回転行列に設定します。\n * @paramq クォータニオン\n * @return このオブジェクト\n */",
+            "subject" : "public function setQuat(q:Quat):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m の逆行列に設定します。\n * @paramm 行列\n * @return このオブジェクト\n */",
+            "subject" : "public function invert(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列の値を m からコピーします。\n * @paramm 行列\n * @return このオブジェクト\n */",
+            "subject" : "public function copy(m:Mat33):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列の値を4行4列の要素を持つ行列 m からコピーします。\n * 4行目および4列目の要素はコピーされません。\n * @paramm 4行4列の要素を持つ行列\n * @return このオブジェクト\n */",
+            "subject" : "public function copyMat44(m:Mat44):Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この Mat33 オブジェクトを複製します。\n * @return 複製された Mat33 オブジェクト\n */",
+            "subject" : "public function clone():Mat33 {"
+         },
+         {
+            "comment" : "/**\n * この行列の文字列表現を返します。\n * @return この行列を表す文字列\n */",
+            "subject" : "public function toString():String {"
+         }
+      ],
+      "Mat44" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * 4行4列の要素を持つ行列を扱うクラスです。\n * この行列は、ある三次元座標系から別の三次元座標系への、平行移動を含む完全な変換をサポートします。\n * 行列は右手系の行列として扱われます。\n * オブジェクトの不要な作成を避けるため、\n * 関数ではほとんどの演算結果は自身のオブジェクトに格納されます。\n * @author saharan\n */",
+            "subject" : "public class Mat44 {"
+         },
+         {
+            "comment" : "/**\n * 1行1列目の要素です。\n */",
+            "subject" : "public var e00:Number;"
+         },
+         {
+            "comment" : "/**\n * 1行2列目の要素です。\n */",
+            "subject" : "public var e01:Number;"
+         },
+         {
+            "comment" : "/**\n * 1行3列目の要素です。\n */",
+            "subject" : "public var e02:Number;"
+         },
+         {
+            "comment" : "/**\n * 1行4列目の要素です。\n */",
+            "subject" : "public var e03:Number;"
+         },
+         {
+            "comment" : "/**\n * 2行1列目の要素です。\n */",
+            "subject" : "public var e10:Number;"
+         },
+         {
+            "comment" : "/**\n * 2行2列目の要素です。\n */",
+            "subject" : "public var e11:Number;"
+         },
+         {
+            "comment" : "/**\n * 2行3列目の要素です。\n */",
+            "subject" : "public var e12:Number;"
+         },
+         {
+            "comment" : "/**\n * 2行4列目の要素です。\n */",
+            "subject" : "public var e13:Number;"
+         },
+         {
+            "comment" : "/**\n * 3行1列目の要素です。\n */",
+            "subject" : "public var e20:Number;"
+         },
+         {
+            "comment" : "/**\n * 3行2列目の要素です。\n */",
+            "subject" : "public var e21:Number;"
+         },
+         {
+            "comment" : "/**\n * 3行3列目の要素です。\n */",
+            "subject" : "public var e22:Number;"
+         },
+         {
+            "comment" : "/**\n * 3行4列目の要素です。\n */",
+            "subject" : "public var e23:Number;"
+         },
+         {
+            "comment" : "/**\n * 4行1列目の要素です。\n */",
+            "subject" : "public var e30:Number;"
+         },
+         {
+            "comment" : "/**\n * 4行2列目の要素です。\n */",
+            "subject" : "public var e31:Number;"
+         },
+         {
+            "comment" : "/**\n * 4行3列目の要素です。\n */",
+            "subject" : "public var e32:Number;"
+         },
+         {
+            "comment" : "/**\n * 4行4列目の要素です。\n */",
+            "subject" : "public var e33:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しく Mat44 オブジェクトを作成します。\n * 引数を指定しない場合は、単位行列で初期化されます。\n * @parame00 設定する1行1列目の要素\n * @parame01 設定する1行2列目の要素\n * @parame02 設定する1行3列目の要素\n * @parame03 設定する1行4列目の要素\n * @parame10 設定する2行1列目の要素\n * @parame11 設定する2行2列目の要素\n * @parame12 設定する2行3列目の要素\n * @parame13 設定する2行4列目の要素\n * @parame20 設定する3行1列目の要素\n * @parame21 設定する3行2列目の要素\n * @parame22 設定する3行3列目の要素\n * @parame23 設定する3行4列目の要素\n * @parame30 設定する4行1列目の要素\n * @parame31 設定する4行2列目の要素\n * @parame32 設定する4行3列目の要素\n * @parame33 設定する4行4列目の要素\n */",
+            "subject" : "public function Mat44("
+         },
+         {
+            "comment" : "/**\n * この行列を指定された値で初期化します。\n * 引数を指定しない場合は、単位行列で初期化されます。\n * @parame00 設定する1行1列目の要素\n * @parame01 設定する1行2列目の要素\n * @parame02 設定する1行3列目の要素\n * @parame03 設定する1行4列目の要素\n * @parame10 設定する2行1列目の要素\n * @parame11 設定する2行2列目の要素\n * @parame12 設定する2行3列目の要素\n * @parame13 設定する2行4列目の要素\n * @parame20 設定する3行1列目の要素\n * @parame21 設定する3行2列目の要素\n * @parame22 設定する3行3列目の要素\n * @parame23 設定する3行4列目の要素\n * @parame30 設定する4行1列目の要素\n * @parame31 設定する4行2列目の要素\n * @parame32 設定する4行3列目の要素\n * @parame33 設定する4行4列目の要素\n * @return このオブジェクト\n */",
+            "subject" : "public function init("
+         },
+         {
+            "comment" : "/**\n * この行列を m1 と m2 を加算した行列に設定します。\n * @paramm1 行列1\n * @paramm2 行列2\n * @return このオブジェクト\n */",
+            "subject" : "public function add(m1:Mat44, m2:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m1 から m2 を減算した行列に設定します。\n * @paramm1 行列1\n * @paramm2 行列2\n * @return このオブジェクト\n */",
+            "subject" : "public function sub(m1:Mat44, m2:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m を s 倍に拡張した行列に設定します。\n * @paramm 行列\n * @params スカラー\n * @return このオブジェクト\n */",
+            "subject" : "public function scale(m:Mat44, s:Number):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m1 と m2 を合成した行列に設定します。\n * @paramm1 行列1\n * @paramm2 行列2\n * @return このオブジェクト\n */",
+            "subject" : "public function mul(m1:Mat44, m2:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m と拡大縮小行列を合成したものに設定します。\n * @paramm 行列\n * @paramsx x 方向の拡大率\n * @paramsy　y 方向の拡大率\n * @paramsz　z 方向の拡大率\n * @paramprepend 合成順序を逆にする場合は true\n * @return このオブジェクト\n */",
+            "subject" : "public function mulScale(m:Mat44, sx:Number, sy:Number, sz:Number, prepend:Boolean = false):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m と回転行列を合成したものに設定します。\n * @paramm 行列\n * @paramrad ラジアンでの回転角度\n * @paramax 回転軸の x 成分\n * @paramay 回転軸の y 成分\n * @paramaz 回転軸の z 成分\n * @paramprepend 合成順序を逆にする場合は true\n * @return このオブジェクト\n */",
+            "subject" : "public function mulRotate(m:Mat44, rad:Number, ax:Number, ay:Number, az:Number, prepend:Boolean = false):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m と平行移動行列を合成したものに設定します。\n * @paramm 行列\n * @paramtx x 方向の平行移動成分\n * @paramty y 方向の平行移動成分\n * @paramtz z 方向の平行移動成分\n * @paramprepend 合成順序を逆にする場合は true\n * @return このオブジェクト\n */",
+            "subject" : "public function mulTranslate(m:Mat44, tx:Number, ty:Number, tz:Number, prepend:Boolean = false):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m の転置行列に設定します。\n * @paramm 行列\n * @return このオブジェクト\n */",
+            "subject" : "public function transpose(m:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を q で表される回転行列に設定します。\n * @paramq クォータニオン\n * @return このオブジェクト\n */",
+            "subject" : "public function setQuat(q:Quat):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を m の逆行列に設定します。\n * @paramm 行列\n * @return このオブジェクト\n */",
+            "subject" : "public function invert(m:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を指定された値を元に作られるビュー変換行列に設定します。\n * @parameyeX 視点の x 座標\n * @parameyeY 視点の y 座標\n * @parameyeZ 視点の z 座標\n * @paramatX 注視点の x 座標\n * @paramatY 注視点の y 座標\n * @paramatZ 注視点の z 座標\n * @paramupX 上方向のベクトルの x 成分\n * @paramupY 上方向のベクトルの y 成分\n * @paramupZ 上方向のベクトルの z 成分\n * @return このオブジェクト\n */",
+            "subject" : "public function lookAt("
+         },
+         {
+            "comment" : "/**\n * この行列を指定された値を元に作られる透視投影変換行列に設定します。\n * @paramfovY y 方向の視野角\n * @paramaspect アスペクト比\n * @paramnear ニアクリップ面の距離\n * @paramfar ファークリップ面の距離\n * @return このオブジェクト\n */",
+            "subject" : "public function perspective(fovY:Number, aspect:Number, near:Number, far:Number):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列を指定された値を元に作られる平行投影変換行列に設定します。\n * @paramwidth 画面の幅\n * @paramheight 画面の高さ\n * @paramnear ニアクリップ面の距離\n * @paramfar ファークリップ面の距離\n * @return このオブジェクト\n */",
+            "subject" : "public function ortho(width:Number, height:Number, near:Number, far:Number):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列の値を m からコピーします。\n * @paramm 行列\n * @return このオブジェクト\n */",
+            "subject" : "public function copy(m:Mat44):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列の値を3行3列の要素を持つ行列 m からコピーします。\n * 4行目および4列目の値は単位行列からコピーされます。\n * @paramm 3行3列の要素を持つ行列\n * @return このオブジェクト\n */",
+            "subject" : "public function copyMat33(m:Mat33):Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この Mat44 オブジェクトを複製します。\n * @return 複製された Mat44 オブジェクト\n */",
+            "subject" : "public function clone():Mat44 {"
+         },
+         {
+            "comment" : "/**\n * この行列の文字列表現を返します。\n * @return この行列を表す文字列\n */",
+            "subject" : "public function toString():String {"
+         }
+      ],
+      "Quat" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.math {"
+         },
+         {
+            "comment" : "/**\n * クォータニオンを扱うクラスです。\n * クォータニオンは右手系のクォータニオンとして扱われます。\n * オブジェクトの不要な作成を避けるため、\n * 関数ではほとんどの演算結果は自身のオブジェクトに格納されます。\n * @author saharan\n */",
+            "subject" : "public class Quat {"
+         },
+         {
+            "comment" : "/**\n * スカラー成分です。\n */",
+            "subject" : "public var s:Number;"
+         },
+         {
+            "comment" : "/**\n * x 成分です。\n */",
+            "subject" : "public var x:Number;"
+         },
+         {
+            "comment" : "/**\n * y 成分です。\n */",
+            "subject" : "public var y:Number;"
+         },
+         {
+            "comment" : "/**\n * z 成分です。\n */",
+            "subject" : "public var z:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しく Quat オブジェクトを作成します。\n * 引数を指定しない場合は、単位クォータニオンで初期化されます。\n * @params スカラー成分\n * @paramx x 成分\n * @paramy y 成分\n * @paramz z 成分\n */",
+            "subject" : "public function Quat(s:Number = 1, x:Number = 0, y:Number = 0, z:Number = 0) {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンを指定された値で初期化します。\n * 引数を指定しない場合は、単位クォータニオンで初期化されます。\n * @params スカラー成分\n * @paramx x 成分\n * @paramy y 成分\n * @paramz z 成分\n */",
+            "subject" : "public function init(s:Number = 1, x:Number = 0, y:Number = 0, z:Number = 0):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンを q1 と q2 を加算したクォータニオンに設定します。\n * @paramq1 クォータニオン1\n * @paramq2 クォータニオン2\n * @return このオブジェクト\n */",
+            "subject" : "public function add(q1:Quat, q2:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンを q1 から q2 を減算したクォータニオンに設定します。\n * @paramq1 クォータニオン1\n * @paramq2 クォータニオン2\n * @return このオブジェクト\n */",
+            "subject" : "public function sub(q1:Quat, q2:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンを q を s 倍に拡張したクォータニオンに設定します。\n * @paramq クォータニオン\n * @params スカラー\n * @return このオブジェクト\n */",
+            "subject" : "public function scale(q:Quat, s:Number):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンを q1 と q2 を合成したクォータニオンに設定します。\n * @paramq1 クォータニオン1\n * @paramq2 クォータニオン2\n * @return このオブジェクト\n */",
+            "subject" : "public function mul(q1:Quat, q2:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンを q を正規化したクォータニオンに設定します。\n * @paramq クォータニオン\n * @return このオブジェクト\n */",
+            "subject" : "public function normalize(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンを q を反転させたクォータニオンに設定します。\n * @paramq クォータニオン\n * @return このオブジェクト\n */",
+            "subject" : "public function invert(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンの大きさを返します。\n * @return 大きさ\n */",
+            "subject" : "public function length():Number {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンの値を q からコピーします。\n * @paramq クォータニオン\n * @return このオブジェクト\n */",
+            "subject" : "public function copy(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * この Quat オブジェクトを複製します。\n * @return 複製された Quat オブジェクト\n */",
+            "subject" : "public function clone(q:Quat):Quat {"
+         },
+         {
+            "comment" : "/**\n * このクォータニオンの文字列表現を返します。\n * @return このクォータニオンを表す文字列\n */",
+            "subject" : "public function toString():String {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.collision.broad" : {
+      "Proxy" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.broad {"
+         },
+         {
+            "comment" : "/**\n * 広域衝突判定のために、詳細な形状の代わりに使用される\n * 軸並行境界ボックスのクラスです。\n * 詳細な形状の衝突判定の回数を削減するため、\n * 詳細な衝突判定の前に、形状はより単純な形に近似され、\n * 衝突の可能性がない形状の判定を取り除きます。\n * @author saharan\n */",
+            "subject" : "public class Proxy {"
+         },
+         {
+            "comment" : "/**\n * x 軸の最小値です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var minX:Number;"
+         },
+         {
+            "comment" : "/**\n * x 軸の最大値です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var maxX:Number;"
+         },
+         {
+            "comment" : "/**\n * y 軸の最小値です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var minY:Number;"
+         },
+         {
+            "comment" : "/**\n * y 軸の最大値です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var maxY:Number;"
+         },
+         {
+            "comment" : "/**\n * z 軸の最小値です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var minZ:Number;"
+         },
+         {
+            "comment" : "/**\n * z 軸の最大値です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var maxZ:Number;"
+         },
+         {
+            "comment" : "/**\n * このプロキシの親となる形状です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var parent:Shape;"
+         },
+         {
+            "comment" : "/**\n * 新しく Proxy オブジェクトを作成します。\n * 引数を指定しない場合は、全ての値が0に初期化されます。\n * @paramminX x 軸の最小値\n * @parammaxX x 軸の最大値\n * @paramminY y 軸の最小値\n * @parammaxY y 軸の最大値\n * @paramminZ z 軸の最小値\n * @parammaxZ z 軸の最大値\n */",
+            "subject" : "public function Proxy("
+         },
+         {
+            "comment" : "/**\n * このプロキシを指定された値で初期化します。\n * 引数を指定しない場合は、全ての値が0に初期化されます。\n * @paramminX x 軸の最小値\n * @parammaxX x 軸の最大値\n * @paramminY y 軸の最小値\n * @parammaxY y 軸の最大値\n * @paramminZ z 軸の最小値\n * @parammaxZ z 軸の最大値\n */",
+            "subject" : "public function init("
+         },
+         {
+            "comment" : "/**\n * このプロキシが引数のプロキシと交差するかどうか判定します。\n * @paramproxy プロキシ\n * @return 交差する場合は true\n */",
+            "subject" : "public function intersect(proxy:Proxy):Boolean {"
+         }
+      ],
+      "Pair" : [
+         {
+            "comment" : "/**\n * 衝突の可能性のある形状の対を扱うクラスです。\n * @author saharan\n */",
+            "subject" : "public class Pair {"
+         },
+         {
+            "comment" : "/**\n * 1つ目の形状です。\n */",
+            "subject" : "public var shape1:Shape;"
+         },
+         {
+            "comment" : "/**\n * 2つ目の形状です。\n */",
+            "subject" : "public var shape2:Shape;"
+         },
+         {
+            "comment" : "/**\n * 新しく Pair クラスを作成します。\n */",
+            "subject" : "public function Pair() {"
+         }
+      ],
+      "BroadPhase" : [
+         {
+            "comment" : "/**\n * 広域衝突判定を行うクラスです。\n * 広域衝突判定では、詳細な衝突判定の回数を削減するため、\n * 詳細な形状の代わりに、近似された単純な形を用いて計算されます。\n * 広域衝突判定の後、衝突の可能性がある形状のペアのみに、詳細な衝突判定が行われます。\n * @author saharan\n */",
+            "subject" : "public class BroadPhase {"
+         },
+         {
+            "comment" : "/**\n * プロキシが重なった形状のペアの配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var pairs:Vector.<Pair>;"
+         },
+         {
+            "comment" : "/**\n * プロキシが重なった形状のペアの数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numPairs:uint;"
+         },
+         {
+            "comment" : "/**\n * プロキシが重なった形状のペアを検索した回数です。\n * アルゴリズムが総当りの場合、この数は形状の数を n とすると n * (n - 1) / 2 と表せます。\n */",
+            "subject" : "public var numPairChecks:uint;"
+         },
+         {
+            "comment" : "/**\n * 新しく BroadPhase オブジェクトを作成します。\n * <strong>このコンストラクタは外部から呼び出さないでください。</strong>\n */",
+            "subject" : "public function BroadPhase() {"
+         },
+         {
+            "comment" : "/**\n * 判定対象のプロキシを追加します。\n * @paramproxy 追加するプロキシ\n */",
+            "subject" : "public function addProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * 判定対象のプロキシを削除します。\n * @paramproxy 削除するプロキシ\n */",
+            "subject" : "public function removeProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * 指定された形状で構成されるペアが有効であるかどうかを判断します。\n * @params1 形状1\n * @params2 形状2\n * @return ペアが有効なら true\n */",
+            "subject" : "public function isAvailablePair(s1:Shape, s2:Shape):Boolean {"
+         },
+         {
+            "comment" : "/**\n * 衝突の可能性がある形状のペアを計算します。\n */",
+            "subject" : "public function detectPairs():void {"
+         }
+      ],
+      "BruteForceBroadPhase" : [
+         {
+            "comment" : "/**\n * 総当りアルゴリズムを使用して広域衝突判定を行うクラスです。\n * <strong>このアルゴリズムは速度検証以外には非推奨です。</strong>\n * 総当り判定は形状の数に対し、常に O(n^2) の計算量を要求するため、\n * 形状の増え方に比べ、負荷の増え方が非常に高くなります。\n * @author saharan\n */",
+            "subject" : "public class BruteForceBroadPhase extends BroadPhase {"
+         },
+         {
+            "comment" : "/**\n * 新しく BruteForceBroadPhase オブジェクトを作成します。\n */",
+            "subject" : "public function BruteForceBroadPhase() {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function addProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function removeProxy(proxy:Proxy):void {"
+         }
+      ],
+      "SweepAndPruneBroadPhase" : [
+         {
+            "comment" : "/**\n * Sweep And Prune アルゴリズムを使用して広域衝突判定を行うクラスです。\n * プロキシの要素は各軸についてソートされ、\n * 衝突の可能性がある形状のペアを効率的に計算することができます。\n * ワールドに対し多数の形状がワープおよび高速で移動するような場面では、\n * このアルゴリズムは好ましくない結果を生み出す可能性があります。\n * @author saharan\n */",
+            "subject" : "public class SweepAndPruneBroadPhase extends BroadPhase {"
+         },
+         {
+            "comment" : "/**\n * 新しく SweepAndPruneBroadPhase オブジェクトを作成します。\n */",
+            "subject" : "public function SweepAndPruneBroadPhase() {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function addProxy(proxy:Proxy):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function removeProxy(proxy:Proxy):void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.collision.narrow" : {
+      "SphereCylinderCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * 球体と円柱との詳細な衝突判定を行います。\n * detectCollision 関数の引数に指定する形状は、\n * コンストラクタで flip を true にしていない場合、\n * 一つ目が球体、二つ目が円柱である必要があります。\n * @author saharan\n */",
+            "subject" : "public class SphereCylinderCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * 新しく SphereCylinderCollisionDetector オブジェクトを作成します。\n * @paramflip detectCollision 関数の引数に指定する形状の順序を、反転して受け取る場合は true\n */",
+            "subject" : "public function SphereCylinderCollisionDetector(flip:Boolean) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, result:CollisionResult):void {"
+         }
+      ],
+      "BoxBoxCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * 箱同士の詳細な衝突判定を行います。\n * detectCollision 関数の引数に指定する形状は、\n * どちらも箱である必要があります。\n * @author saharan\n */",
+            "subject" : "public class BoxBoxCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * 新しく BoxBoxCollisionDetector オブジェクトを作成します。\n */",
+            "subject" : "public function BoxBoxCollisionDetector() {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, result:CollisionResult):void {"
+         }
+      ],
+      "SphereSphereCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * 球体同士の詳細な衝突判定を行います。\n * detectCollision 関数の引数に指定する形状は、\n * どちらも球体である必要があります。\n * @author saharan\n */",
+            "subject" : "public class SphereSphereCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * 新しく SphereSphereCollisionDetector オブジェクトを作成します。\n */",
+            "subject" : "public function SphereSphereCollisionDetector() {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, result:CollisionResult):void {"
+         }
+      ],
+      "ContactInfo" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * 剛体同士の接触情報を保持するクラスです。\n * @author saharan\n */",
+            "subject" : "public class ContactInfo {"
+         },
+         {
+            "comment" : "/**\n * 接触地点のワールド座標です。\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 接触面に対し垂直な法線ベクトルです。\n */",
+            "subject" : "public var normal:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 形状間に発生した重なりの大きさです。\n * 正確には形状間の距離を表すので、\n * 重なりが発生した場合は、この変数は負の値を取ります。\n */",
+            "subject" : "public var overlap:Number;"
+         },
+         {
+            "comment" : "/**\n * 接触を起こした形状1です。\n */",
+            "subject" : "public var shape1:Shape;"
+         },
+         {
+            "comment" : "/**\n * 接触を起こした形状2です。\n */",
+            "subject" : "public var shape2:Shape;"
+         },
+         {
+            "comment" : "/**\n * 接触点の識別データです。\n */",
+            "subject" : "public var id:ContactID;"
+         },
+         {
+            "comment" : "/**\n * 新しく ContactInfo オブジェクトを作成します。\n */",
+            "subject" : "public function ContactInfo() {"
+         }
+      ],
+      "ContactID" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * 接触点の識別のためのクラスです。\n * @author saharan\n */",
+            "subject" : "public class ContactID {"
+         },
+         {
+            "comment" : "/**\n * 識別に使われる一つ目のデータです。\n */",
+            "subject" : "public var data1:uint;"
+         },
+         {
+            "comment" : "/**\n * 識別に使われる二つ目のデータです。\n */",
+            "subject" : "public var data2:uint;"
+         },
+         {
+            "comment" : "/**\n * 識別データが反転しているかどうかを表します。\n */",
+            "subject" : "public var flip:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 新しく ContactID オブジェクトを作成します。\n */",
+            "subject" : "public function ContactID() {"
+         }
+      ],
+      "CollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * より詳細な形状の衝突判定を行うクラスです。\n * @author saharan\n */",
+            "subject" : "public class CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * detectCollision 関数の引数に指定する形状の順序を、\n * 反転して受け取るかどうかを表します。\n */",
+            "subject" : "public var flip:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 新しく CollisionDetector オブジェクトを作成します。\n * <strong>このコンストラクタは外部から呼び出さないでください。</strong>\n */",
+            "subject" : "public function CollisionDetector() {"
+         },
+         {
+            "comment" : "/**\n * 二つの形状の詳細な衝突判定を行います。\n * 形状の種類は指定された物である必要があります。\n * @paramshape1 形状1\n * @paramshape2 形状2\n * @paramresult 衝突結果の格納先\n */",
+            "subject" : "public function detectCollision(shape1:Shape, shape2:Shape, result:CollisionResult):void {"
+         }
+      ],
+      "CollisionResult" : [
+         {
+            "comment" : "/**\n * 衝突判定の結果を格納するクラスです。\n * @author saharan\n */",
+            "subject" : "public class CollisionResult {"
+         },
+         {
+            "comment" : "/**\n * 接触点情報の配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var contactInfos:Vector.<ContactInfo>;"
+         },
+         {
+            "comment" : "/**\n * 接触点情報の配列の数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numContactInfos:uint;"
+         },
+         {
+            "comment" : "/**\n * 新しく CollisionResult オブジェクトを作成します。\n * @param maxContactInfos 格納できる接触点情報の最大数です。\n */",
+            "subject" : "public function CollisionResult(maxContactInfos:uint) {"
+         },
+         {
+            "comment" : "/**\n * 衝突結果を追加します。\n * @parampositionX ワールド座標系での衝突位置の x 値\n * @parampositionY ワールド座標系での衝突位置の y 値\n * @parampositionZ ワールド座標系での衝突位置の z 値\n * @paramnormalX ワールド座標系での法線方向の x 値\n * @paramnormalY ワールド座標系での法線方向の y 値\n * @paramnormalZ ワールド座標系での法線方向の z 値\n * @paramoverlap 二つの形状間の距離\n * @paramshape1 形状1\n * @paramshape2 形状2\n * @paramdata1 識別データ1\n * @paramdata2 識別データ2\n * @paramflip 識別データの順序が反転しているかどうか\n */",
+            "subject" : "public function addContactInfo("
+         }
+      ],
+      "CylinderCylinderCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012-2013 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * 円柱同士の詳細な衝突判定を行います。\n * detectCollision 関数の引数に指定する形状は、\n * どちらも円柱である必要があります。\n * @author saharan\n */",
+            "subject" : "public class CylinderCylinderCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * 新しく CylinderCylinderCollisionDetector オブジェクトを作成します。\n */",
+            "subject" : "public function CylinderCylinderCollisionDetector() {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, result:CollisionResult):void {"
+         }
+      ],
+      "SphereBoxCollisionDetector" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.narrow {"
+         },
+         {
+            "comment" : "/**\n * 球体と箱との詳細な衝突判定を行います。\n * detectCollision 関数の引数に指定する形状は、\n * コンストラクタで flip を true にしていない場合、\n * 一つ目が球体、二つ目が箱である必要があります。\n * @author saharan\n */",
+            "subject" : "public class SphereBoxCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * 新しく SphereBoxCollisionDetector オブジェクトを作成します。\n * @paramflip detectCollision 関数の引数に指定する形状の順序を、反転して受け取る場合は true\n */",
+            "subject" : "public function SphereBoxCollisionDetector(flip:Boolean) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, result:CollisionResult):void {"
+         }
+      ],
+      "BoxCylinderCollisionDetector" : [
+         {
+            "comment" : "/**\n * Minkowski portal refinement\n * @author saharan\n */",
+            "subject" : "public class BoxCylinderCollisionDetector extends CollisionDetector {"
+         },
+         {
+            "comment" : "/**\n * 新しく BoxCylinderCollisionDetector オブジェクトを作成します。\n * @paramflip detectCollision 関数の引数に指定する形状の順序を、反転して受け取る場合は true\n */",
+            "subject" : "public function BoxCylinderCollisionDetector(flip:Boolean) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function detectCollision(shape1:Shape, shape2:Shape, result:CollisionResult):void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.constraint.contact" : {
+      "Contact" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.contact {"
+         },
+         {
+            "comment" : "/**\n * 二つの剛体間の接触拘束を扱うクラスです。\n * @author saharan\n */",
+            "subject" : "public class Contact extends Constraint {"
+         },
+         {
+            "comment" : "/**\n * 接触地点のワールド座標です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1に対する接触点の相対位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var relativePosition1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2に対する接触点の相対位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var relativePosition2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 接触面に対し垂直な法線ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * 接線および従法線とは垂直の関係にあり、\n * 垂直抗力はこの方向にのみ働きます。\n */",
+            "subject" : "public var normal:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 接触面に対し水平な接線ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * 法線および従法線とは垂直の関係にあり、\n * 摩擦力はこの方向および従法線方向にのみ働きます。\n */",
+            "subject" : "public var tangent:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 接触面に対し水平な従法線ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * 法線および接線とは垂直の関係にあり、\n * 摩擦力はこの方向および接線方向にのみ働きます。\n */",
+            "subject" : "public var binormal:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体間に発生した重なりの大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * 重なりを解消するため、各剛体は法線方向に押し出されます。\n */",
+            "subject" : "public var overlap:Number;"
+         },
+         {
+            "comment" : "/**\n * 法線方向に働いた垂直抗力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var normalImpulse:Number;"
+         },
+         {
+            "comment" : "/**\n * 接線方向に働いた摩擦力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var tangentImpulse:Number;"
+         },
+         {
+            "comment" : "/**\n * 法線方向の適正質量の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var normalDenominator:Number;"
+         },
+         {
+            "comment" : "/**\n * 接線方向の適正質量の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var tangentDenominator:Number;"
+         },
+         {
+            "comment" : "/**\n * 従法線方向の適正質量の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var binormalDenominator:Number;"
+         },
+         {
+            "comment" : "/**\n * 従法線方向に働いた摩擦力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var binormalImpulse:Number;"
+         },
+         {
+            "comment" : "/**\n * 接触を起こした形状1です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var shape1:Shape;"
+         },
+         {
+            "comment" : "/**\n * 接触を起こした形状2です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var shape2:Shape;"
+         },
+         {
+            "comment" : "/**\n * 形状1に対する繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var shapeConnection1:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * 形状2に対する繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var shapeConnection2:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * 剛体1に対する繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var bodyConnection1:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * 剛体2に対する繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var bodyConnection2:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * 接触点の識別データです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var id:ContactID;"
+         },
+         {
+            "comment" : "/**\n * この接触が前ステップでも存在したかを示します。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var warmStarted:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 新しく Contact オブジェクトを作成します。\n */",
+            "subject" : "public function Contact() {"
+         },
+         {
+            "comment" : "/**\n * この拘束を接触点情報から作成します。\n * @paramcontactInfo\n */",
+            "subject" : "public function setupFromContactInfo(contactInfo:ContactInfo):void {"
+         },
+         {
+            "comment" : "/**\n * この接触からの全ての剛体と形状への参照を破棄します。\n */",
+            "subject" : "public function removeReferences():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "ContactConnection" : [
+         {
+            "comment" : "/**\n * 接触点による形状と剛体の繋がりを扱うクラスです。\n * @author saharan\n */",
+            "subject" : "public class ContactConnection {"
+         },
+         {
+            "comment" : "/**\n * 前の接触点の繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var prev:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * 次の接触点の繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var next:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * この繋がりによって繋がれている形状です。\n */",
+            "subject" : "public var connectedShape:Shape;"
+         },
+         {
+            "comment" : "/**\n * この繋がりによって繋がれている剛体です。\n */",
+            "subject" : "public var connectedBody:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * この繋がりの親となる接触点です。\n */",
+            "subject" : "public var parent:Contact;"
+         },
+         {
+            "comment" : "/**\n * 新しく ContactConnection オブジェクトを作成します。\n * @paramparent この繋がりの親となる接触点\n */",
+            "subject" : "public function ContactConnection(parent:Contact) {"
+         }
+      ]
+   },
+   "com.element.oimo.glmini" : {
+      "OimoGLMini" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.glmini {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.test" : {
+      "SphereStackTest" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.test {"
+         },
+         {
+            "comment" : "/**\n * 動作テスト\n * @author saharan\n */",
+            "subject" : "[SWF(width = \"640\", height = \"480\", frameRate = \"60\")]"
+         }
+      ],
+      "PyramidTest" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.test {"
+         },
+         {
+            "comment" : "/**\n * 動作テスト\n * @author saharan\n */",
+            "subject" : "[SWF(width = \"640\", height = \"480\", frameRate = \"60\")]"
+         }
+      ],
+      "CylinderTest" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.test {"
+         },
+         {
+            "comment" : "/**\n * 動作テスト\n * @author saharan\n */",
+            "subject" : "[SWF(width = \"640\", height = \"480\", frameRate = \"60\")]"
+         }
+      ],
+      "BoxTest" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.test {"
+         },
+         {
+            "comment" : "/**\n * 動作テスト\n * @author saharan\n */",
+            "subject" : "[SWF(width = \"640\", height = \"480\", frameRate = \"60\")]"
+         },
+         {
+            "comment" : "/*for (var j:int = 0; j < height; j++) {\nfor (var i:int = 0; i < 3; i++) {\nvar rot:Boolean = (j & 1) == 0;\nrb = new RigidBody();\nc.position.init(\nrot ? 0 : (i - 1) * 0.75,\nj * (0.75 * 1.1) + 0.75 * 0.5 + 0.05,\nrot ? (i - 1) * 0.75 : 0\n);\ns = new BoxShape(rot ? 2.25 : 0.75, 0.75, rot ? 0.75 : 2.25, c);\nrb.addShape(s);\nrb.setupMass(RigidBody.BODY_DYNAMIC);\nworld.addRigidBody(rb);\n}\n}*/",
+            "subject" : "/*for (var i:int = 0; i < height; i++) {"
+         }
+      ],
+      "JointTest" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.test {"
+         },
+         {
+            "comment" : "/**\n * 動作テスト\n * @author saharan\n */",
+            "subject" : "[SWF(width = \"640\", height = \"480\", frameRate = \"60\")]"
+         }
+      ],
+      "CylinderTest2" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.test {"
+         },
+         {
+            "comment" : "/**\n * 動作テスト\n * @author saharan\n */",
+            "subject" : "[SWF(width = \"640\", height = \"480\", frameRate = \"60\")]"
+         }
+      ]
+   },
+   "com.element.oimo.physics.constraint.joint" : {
+      "HingeJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * 剛体間の回転を軸方向のみに拘束するジョイントです。\n * 蝶番のような動きをします。\n * @author saharan\n */",
+            "subject" : "public class HingeJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * 並進速度の拘束力のベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var impulse:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 可動範囲の制限に使用した拘束力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var limitTorque:Number;"
+         },
+         {
+            "comment" : "/**\n * モーターに使用した拘束力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var motorTorque:Number;"
+         },
+         {
+            "comment" : "/**\n * 角速度の拘束力のベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var torque:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転の軸を表すベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2の回転の軸を表すベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 可動範囲の制限が有効であるかどうかを表します。\n */",
+            "subject" : "public var enableLimits:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 可動範囲の下限です。\n * enableLimits が true の時にのみ有効になります。\n */",
+            "subject" : "public var lowerLimit:Number;"
+         },
+         {
+            "comment" : "/**\n * 可動範囲の上限です。\n * enableLimits が true の時にのみ有効になります。\n */",
+            "subject" : "public var upperLimit:Number;"
+         },
+         {
+            "comment" : "/**\n * モーターが有効であるかどうかを表します。\n */",
+            "subject" : "public var enableMotor:Boolean;"
+         },
+         {
+            "comment" : "/**\n * モーターの速度です。\n * enableMotor が true の時にのみ有効になります。\n */",
+            "subject" : "public var motorSpeed:Number;"
+         },
+         {
+            "comment" : "/**\n * モーターの最大のトルクです。\n * enableMotor が true の時にのみ有効になります。\n */",
+            "subject" : "public var maxMotorTorque:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しい HingeJoint オブジェクトを作成します。\n * @paramrigid1 剛体1\n * @paramrigid2 剛体2\n * @paramconfig ジョイントの設定\n */",
+            "subject" : "public function HingeJoint(rigid1:RigidBody, rigid2:RigidBody, config:JointConfig) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "JointConnection" : [
+         {
+            "comment" : "/**\n * ジョイントによる剛体の繋がりを扱うクラスです。\n * @author saharan\n */",
+            "subject" : "public class JointConnection {"
+         },
+         {
+            "comment" : "/**\n * 前のジョイントの繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var prev:JointConnection;"
+         },
+         {
+            "comment" : "/**\n * 次のジョイントの繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var next:JointConnection;"
+         },
+         {
+            "comment" : "/**\n * この繋がりによって繋がれている剛体です。\n */",
+            "subject" : "public var connected:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * この繋がりの親となるジョイントです。\n */",
+            "subject" : "public var parent:Joint;"
+         },
+         {
+            "comment" : "/**\n * 新しく JointConnection オブジェクトを作成します。\n * @paramparent この繋がりの親となるジョイント\n */",
+            "subject" : "public function JointConnection(parent:Joint) {"
+         }
+      ],
+      "Joint" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * 剛体同士を繋ぐジョイントのクラスです。\n * @author saharan\n */",
+            "subject" : "public class Joint extends Constraint {"
+         },
+         {
+            "comment" : "/**\n * 定義されていないことを表すジョイントの種類です。\n */",
+            "subject" : "public static const JOINT_NULL:uint = 0x0;"
+         },
+         {
+            "comment" : "/**\n * 距離ジョイント表すジョイントの種類です。\n */",
+            "subject" : "public static const JOINT_DISTANCE:uint = 0x1;"
+         },
+         {
+            "comment" : "/**\n * ボールジョイント表すジョイントの種類です。\n */",
+            "subject" : "public static const JOINT_BALL:uint = 0x2;"
+         },
+         {
+            "comment" : "/**\n * ヒンジジョイント表すジョイントの種類です。\n */",
+            "subject" : "public static const JOINT_HINGE:uint = 0x3;"
+         },
+         {
+            "comment" : "/**\n * ヒンジ2ジョイント表すジョイントの種類です。\n */",
+            "subject" : "public static const JOINT_HINGE2:uint = 0x4;"
+         },
+         {
+            "comment" : "/**\n * ジョイントの種類を表します。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var type:uint;"
+         },
+         {
+            "comment" : "/**\n * 接続された剛体同士が衝突するかどうかを表します。\n */",
+            "subject" : "public var allowCollision:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体1に対する初期状態での相対接続位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localRelativeAnchorPosition1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2に対する初期状態での相対接続位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localRelativeAnchorPosition2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1に対する相対接続位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var relativeAnchorPosition1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2に対する相対接続位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var relativeAnchorPosition2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1への接続位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var anchorPosition1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2への接続位置です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var anchorPosition2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1に対する繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var connection1:JointConnection;"
+         },
+         {
+            "comment" : "/**\n * 剛体2に対する繋がりです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var connection2:JointConnection;"
+         },
+         {
+            "comment" : "/**\n * 新しい Joint オブジェクトを作成します。\n * <strong>このコンストラクタは外部から呼び出さないでください。</strong>\n */",
+            "subject" : "public function Joint() {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "DistanceJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * 剛体間の二点の距離を拘束するジョイントです。\n * @author saharan\n */",
+            "subject" : "public class DistanceJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * 保とうとする剛体間の距離です。\n */",
+            "subject" : "public var distance:Number;"
+         },
+         {
+            "comment" : "/**\n * 拘束力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var impulse:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しい DistanceJoint オブジェクトを作成します。\n * @paramrigid1 剛体1\n * @paramrigid2 剛体2\n * @paramdistance 保とうとする距離\n * @paramconfig ジョイントの設定\n */",
+            "subject" : "public function DistanceJoint(rigid1:RigidBody, rigid2:RigidBody, distance:Number, config:JointConfig) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "JointConfig" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * ジョイントの初期化時に使われる共通設定のクラスです。\n * このクラスの変数はコピーして使われ、直接参照を持たれることはありません。\n * @author saharan\n */",
+            "subject" : "public class JointConfig {"
+         },
+         {
+            "comment" : "/**\n * 剛体1に対する初期状態での相対接続位置です。\n */",
+            "subject" : "public var localRelativeAnchorPosition1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2に対する初期状態での相対接続位置です。\n */",
+            "subject" : "public var localRelativeAnchorPosition2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1に対する初期状態での回転軸です。\n * このオプションは一部のジョイントにおいてのみ有効です。\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2に対する初期状態での回転軸です。\n * このオプションは一部のジョイントにおいてのみ有効です。\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 接続された剛体同士が衝突するかどうかを表します。\n */",
+            "subject" : "public var allowCollision:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 新しく JointConfig オブジェクトを作成します。\n */",
+            "subject" : "public function JointConfig() {"
+         }
+      ],
+      "Hinge2Joint" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * 剛体間の回転を二つの軸方向のみに拘束するジョイントです。\n * それぞれの軸は剛体に付随し、直角に交わります。\n * これは車体とタイヤの接続部分のような動きをします。\n * @author saharan\n */",
+            "subject" : "public class Hinge2Joint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * 並進速度の拘束力のベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var impulse:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対する可動範囲の制限に使用した拘束力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var limitTorque1:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対するモーターに使用した拘束力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var motorTorque1:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体2の回転軸に対する可動範囲の制限に使用した拘束力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var limitTorque2:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体2の回転軸に対するモーターに使用した拘束力の大きさです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var motorTorque2:Number;"
+         },
+         {
+            "comment" : "/**\n * 角速度の拘束力のベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var torque:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転の軸を表すベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localAxis1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体2の回転の軸を表すベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localAxis2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対する可動範囲の制限が有効であるかどうかを表します。\n */",
+            "subject" : "public var enableLimits1:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対する可動範囲の下限です。\n * enableLimits1 が true の時にのみ有効になります。\n */",
+            "subject" : "public var lowerLimit1:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対する可動範囲の上限です。\n * enableLimits1 が true の時にのみ有効になります。\n */",
+            "subject" : "public var upperLimit1:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対する可動範囲の制限が有効であるかどうかを表します。\n */",
+            "subject" : "public var enableLimits2:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対する可動範囲の下限です。\n * enableLimits1 が true の時にのみ有効になります。\n */",
+            "subject" : "public var lowerLimit2:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対する可動範囲の上限です。\n * enableLimits1 が true の時にのみ有効になります。\n */",
+            "subject" : "public var upperLimit2:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対するモーターが有効であるかどうかを表します。\n */",
+            "subject" : "public var enableMotor1:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対するモーターの速度です。\n * enableMotor1 が true の時にのみ有効になります。\n */",
+            "subject" : "public var motorSpeed1:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体1の回転軸に対するモーターの最大のトルクです。\n * enableMotor1 が true の時にのみ有効になります。\n */",
+            "subject" : "public var maxMotorTorque1:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体2の回転軸に対するモーターが有効であるかどうかを表します。\n */",
+            "subject" : "public var enableMotor2:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体2の回転軸に対するモーターの速度です。\n * enableMotor2 が true の時にのみ有効になります。\n */",
+            "subject" : "public var motorSpeed2:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体2の回転軸に対するモーターの最大のトルクです。\n * enableMotor2 が true の時にのみ有効になります。\n */",
+            "subject" : "public var maxMotorTorque2:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しい HingeJoint オブジェクトを作成します。\n * @paramrigid1 剛体1\n * @paramrigid2 剛体2\n * @paramconfig ジョイントの設定\n */",
+            "subject" : "public function Hinge2Joint(rigid1:RigidBody, rigid2:RigidBody, config:JointConfig) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ],
+      "BallJoint" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.constraint.joint {"
+         },
+         {
+            "comment" : "/**\n * 剛体間の一点を拘束するジョイントです。\n * @author saharan\n */",
+            "subject" : "public class BallJoint extends Joint {"
+         },
+         {
+            "comment" : "/**\n * 拘束力のベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * この値は蓄積され、次ステップでも使い回されます。\n */",
+            "subject" : "public var impulse:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 新しい BallJoint オブジェクトを作成します。\n * @paramrigid1 剛体1\n * @paramrigid2 剛体2\n * @paramconfig ジョイントの設定\n */",
+            "subject" : "public function BallJoint(rigid1:RigidBody, rigid2:RigidBody, config:JointConfig) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function preSolve(timeStep:Number, invTimeStep:Number):void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function solve():void {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function postSolve():void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.dynamics" : {
+      "RigidBody" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.dynamics {"
+         },
+         {
+            "comment" : "/**\n * 剛体のクラスです。\n * 剛体は衝突処理用に単数あるいは複数の形状を持ち、\n * それぞれ個別にパラメーターを設定できます。\n * @author saharan\n */",
+            "subject" : "public class RigidBody {"
+         },
+         {
+            "comment" : "/**\n * 動的な剛体を表す剛体の種類です。\n */",
+            "subject" : "public static const BODY_DYNAMIC:uint = 0x0;"
+         },
+         {
+            "comment" : "/**\n * 静的な剛体を表す剛体の種類です。\n */",
+            "subject" : "public static const BODY_STATIC:uint = 0x1;"
+         },
+         {
+            "comment" : "/**\n * 一つの剛体に追加できる形状の最大数です。\n */",
+            "subject" : "public static const MAX_SHAPES:uint = 64;"
+         },
+         {
+            "comment" : "/**\n * 剛体の種類を表します。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 剛体の種類を変更する場合は、必ず\n * setupMass メソッドの引数に設定したい種類を指定してください。\n */",
+            "subject" : "public var type:uint;"
+         },
+         {
+            "comment" : "/**\n * 重心のワールド座標です。\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 姿勢を表すクォータニオンです。\n */",
+            "subject" : "public var orientation:Quat;"
+         },
+         {
+            "comment" : "/**\n * スリープ直前での重心のワールド座標です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var sleepPosition:Vec3;"
+         },
+         {
+            "comment" : "/**\n * スリープ直前での姿勢を表すクォータニオンです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var sleepOrientation:Quat;"
+         },
+         {
+            "comment" : "/**\n * 並進速度です。\n */",
+            "subject" : "public var linearVelocity:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 角速度です。\n */",
+            "subject" : "public var angularVelocity:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 姿勢を表す回転行列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 回転行列は、ステップ毎にクォータニオンから再計算されます。\n */",
+            "subject" : "public var rotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 質量です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 質量は setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var mass:Number;"
+         },
+         {
+            "comment" : "/**\n * 質量の逆数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 質量は setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var invertMass:Number;"
+         },
+         {
+            "comment" : "/**\n * ワールド系での慣性テンソルの逆行列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * ワールド系での慣性テンソルの逆行列は、ステップ毎に\n * 姿勢と初期状態の慣性テンソルの逆数から再計算されます。\n */",
+            "subject" : "public var invertInertia:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 初期状態での慣性テンソルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 慣性テンソルは setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var localInertia:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 初期状態での慣性テンソルの逆行列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * \n * 慣性テンソルは setupMass メソッドを呼び出すと、\n * 含まれている形状から自動で再計算されます。\n */",
+            "subject" : "public var invertLocalInertia:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 剛体に含まれている形状の配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public const shapes:Vector.<Shape> = new Vector.<Shape>(MAX_SHAPES, true);"
+         },
+         {
+            "comment" : "/**\n * 剛体に含まれている形状の数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numShapes:uint;"
+         },
+         {
+            "comment" : "/**\n * 剛体が追加されているワールドです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var parent:World;"
+         },
+         {
+            "comment" : "/**\n * 剛体に関与する接触点のリンク配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var contactList:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * 剛体に接続されているジョイントのリンク配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var jointList:JointConnection;"
+         },
+         {
+            "comment" : "/**\n * 剛体に接続されているジョイントの数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numJoints:uint;"
+         },
+         {
+            "comment" : "/**\n * 剛体がシミュレーションアイランドに追加されたかどうかを示します。\n * この変数は内部でのみ使用されます。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var addedToIsland:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体が静止してからの時間です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var sleepTime:Number;"
+         },
+         {
+            "comment" : "/**\n * 剛体がスリープ状態であるかどうかを示します。\n * <strong>この変数は外部から変更しないでください。</strong>\n * 剛体をスリープさせる場合は sleep メソッドを、\n * 剛体のスリープ状態を解除する場合は awake メソッドを呼び出してください。\n */",
+            "subject" : "public var sleeping:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 剛体をスリープさせるかを示します。\n * シミュレーションアイランド内の全ての剛体が静止している状態が一定時間続くと、\n * そのシミュレーションアイランドはスリープ状態に入ります。\n * スリープしている剛体は awake メソッドが呼び出されるか、\n * 外部からの干渉を受けるまで、スリープ状態が解除されることはありません。\n */",
+            "subject" : "public var allowSleep:Boolean;"
+         },
+         {
+            "comment" : "/**\n * 新しく RigidBody オブジェクトを作成します。\n * 回転成分を指定することもできます。\n * @paramrad ラジアンでの回転角度\n * @paramax 回転軸の x 成分\n * @paramay 回転軸の y 成分\n * @paramaz 回転軸の z 成分\n */",
+            "subject" : "public function RigidBody(rad:Number = 0, ax:Number = 0, ay:Number = 0, az:Number = 0) {"
+         },
+         {
+            "comment" : "/**\n * 剛体に形状を追加します。\n * 形状を追加した場合、次のステップ開始までに setupMass メソッドを呼び出してください。\n * @paramshape 追加する形状\n */",
+            "subject" : "public function addShape(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * 剛体から形状を削除します。\n * 削除する形状のインデックスを指定した場合は、インデックスのみを使用して削除します。\n * 形状を削除した場合、次のステップ開始までに setupMass メソッドを呼び出してください。\n * @paramshape 削除する形状\n * @paramindex 削除する形状のインデックス\n */",
+            "subject" : "public function removeShape(shape:Shape, index:int = -1):void {"
+         },
+         {
+            "comment" : "/**\n * 重心座標・質量・慣性テンソルなどを算出します。\n * type に BODY_STATIC を指定すると、この剛体は空間に対して固定されます。\n * @paramtype 剛体の種類\n */",
+            "subject" : "public function setupMass(type:uint = BODY_DYNAMIC):void {"
+         },
+         {
+            "comment" : "/**\n * この剛体をスリープ状態から開放します。\n */",
+            "subject" : "public function awake():void {"
+         },
+         {
+            "comment" : "/**\n * この剛体をスリープさせます。\n */",
+            "subject" : "public function sleep():void {"
+         },
+         {
+            "comment" : "/**\n * 剛体の外力による速度変化を計算します。\n * このメソッドはワールドのステップを呼ぶと自動で呼び出されるので、\n * 通常は外部から呼ぶ必要はありません。\n * @paramtimeStep 時間刻み幅\n * @paramgravity 重力\n */",
+            "subject" : "public function updateVelocity(timeStep:Number, gravity:Vec3):void {"
+         },
+         {
+            "comment" : "/**\n * 剛体の運動を時間積分し、形状などの情報を更新します。\n * このメソッドはワールドのステップを呼ぶと自動で呼び出されるので、\n * 通常は外部から呼ぶ必要はありません。\n * @paramtimeStep 時間刻み幅\n */",
+            "subject" : "public function updatePosition(timeStep:Number):void {"
+         }
+      ],
+      "World" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.dynamics {"
+         },
+         {
+            "comment" : "/**\n * 物理演算ワールドのクラスです。\n * 全ての物理演算オブジェクトはワールドに追加する必要があります。\n * @author saharan\n */",
+            "subject" : "public class World {"
+         },
+         {
+            "comment" : "/**\n * 追加できる剛体の最大数です。\n */",
+            "subject" : "public static const MAX_BODIES:uint = 16384;"
+         },
+         {
+            "comment" : "/**\n * 追加できる形状の最大数です。\n */",
+            "subject" : "public static const MAX_SHAPES:uint = 32768;"
+         },
+         {
+            "comment" : "/**\n * 検出できる接触点の最大数です。\n */",
+            "subject" : "public static const MAX_CONTACTS:uint = 65536;"
+         },
+         {
+            "comment" : "/**\n * 追加できるジョイントの最大数です。\n */",
+            "subject" : "public static const MAX_JOINTS:uint = 16384;"
+         },
+         {
+            "comment" : "/**\n * 追加されている剛体の配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public const rigidBodies:Vector.<RigidBody> = new Vector.<RigidBody>(MAX_BODIES, true);"
+         },
+         {
+            "comment" : "/**\n * 追加されている剛体の数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numRigidBodies:uint;"
+         },
+         {
+            "comment" : "/**\n * 追加されている形状の配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public const shapes:Vector.<Shape> = new Vector.<Shape>(MAX_SHAPES, true);"
+         },
+         {
+            "comment" : "/**\n * 追加されている形状の数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numShapes:uint;"
+         },
+         {
+            "comment" : "/**\n * 剛体の接触点の配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var contacts:Vector.<Contact>;"
+         },
+         {
+            "comment" : "/**\n * 剛体の接触点の数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numContacts:uint;"
+         },
+         {
+            "comment" : "/**\n * ジョイントの配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public const joints:Vector.<Joint> = new Vector.<Joint>(MAX_JOINTS, true);"
+         },
+         {
+            "comment" : "/**\n * ジョイントの数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numJoints:uint;"
+         },
+         {
+            "comment" : "/**\n * シミュレーションアイランドの数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numIslands:uint;"
+         },
+         {
+            "comment" : "/**\n * 1回のステップで進む時間の長さです。\n */",
+            "subject" : "public var timeStep:Number;"
+         },
+         {
+            "comment" : "/**\n * ワールドにかかる重力です。\n */",
+            "subject" : "public var gravity:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 衝突応答の反復処理回数です。\n * 値が大きいほど、より正確な動きになります。\n */",
+            "subject" : "public var iteration:uint;"
+         },
+         {
+            "comment" : "/**\n * パフォーマンスの詳細情報です。\n * 計算に要した時間などが記録されています。\n */",
+            "subject" : "public var performance:Performance;"
+         },
+         {
+            "comment" : "/**\n * 詳細な衝突判定をできるだけ削減するために使用される広域衝突判定です。\n */",
+            "subject" : "public var broadPhase:BroadPhase;"
+         },
+         {
+            "comment" : "/**\n * 新しく World オブジェクトを作成します。\n * ワールドのタイムステップは、1秒間でのステップの実行回数から算出されます。\n * @param stepPerSecond 1秒間でのステップの実行回数\n */",
+            "subject" : "public function World(stepPerSecond:Number = 60) {"
+         },
+         {
+            "comment" : "/**\n * ワールドに剛体を追加します。\n * 追加された剛体はステップ毎の演算対象になります。\n * @paramrigidBody 追加する剛体\n */",
+            "subject" : "public function addRigidBody(rigidBody:RigidBody):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドから剛体を削除します。\n * 削除された剛体はステップ毎の演算対象から外されます。\n * @paramrigidBody 削除する剛体\n */",
+            "subject" : "public function removeRigidBody(rigidBody:RigidBody):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドに形状を追加します。\n * <strong>剛体をワールドに追加、およびワールドに追加されている剛体に形状を追加すると、\n * 自動で形状もワールドに追加されるので、このメソッドは外部から呼ばないでください。</strong>\n * @paramshape 追加する形状\n */",
+            "subject" : "public function addShape(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドから形状を削除します。\n * <strong>剛体をワールドから削除、およびワールドに追加されている剛体から形状を削除すると、\n * 自動で形状もワールドから削除されるので、このメソッドは外部から呼ばないでください。</strong>\n * @paramshape 削除する形状\n */",
+            "subject" : "public function removeShape(shape:Shape):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドにジョイントを追加します。\n * 追加されたジョイントはステップ毎の演算対象になります。\n * @paramjoint 追加するジョイント\n */",
+            "subject" : "public function addJoint(joint:Joint):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドからジョイントを削除します。\n * 削除されたジョイントはステップ毎の演算対象から外されます。\n * @paramjoint 削除するジョイント\n * @paramindex 削除するジョイントのインデックス\n */",
+            "subject" : "public function removeJoint(joint:Joint):void {"
+         },
+         {
+            "comment" : "/**\n * ワールドの時間をタイムステップ秒だけ進めます。\n */",
+            "subject" : "public function step():void {"
+         }
+      ]
+   },
+   "com.element.oimo.physics.collision.shape" : {
+      "SphereShape" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * 球体を表す形状です。\n * @author saharan\n */",
+            "subject" : "public class SphereShape extends Shape {"
+         },
+         {
+            "comment" : "/**\n * 球体の半径です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var radius:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しく SphereShape オブジェクトを作成します。\n * @paramradius 球体の半径\n * @paramconfig 形状の設定\n */",
+            "subject" : "public function SphereShape(radius:Number, config:ShapeConfig) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function updateProxy():void {"
+         }
+      ],
+      "Shape" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * 剛体に含まれる衝突処理用の形状のクラスです。\n * @author saharan\n */",
+            "subject" : "public class Shape {"
+         },
+         {
+            "comment" : "/**\n * 次に生成される形状の ID の作成に使われます。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public static var nextID:uint = 0;"
+         },
+         {
+            "comment" : "/**\n * 定義されていないことを表す形状の種類です。\n */",
+            "subject" : "public static const SHAPE_NULL:uint = 0x0;"
+         },
+         {
+            "comment" : "/**\n * 球体を表す形状の種類です。\n */",
+            "subject" : "public static const SHAPE_SPHERE:uint = 0x1;"
+         },
+         {
+            "comment" : "/**\n * 箱を表す形状の種類です。\n */",
+            "subject" : "public static const SHAPE_BOX:uint = 0x2;"
+         },
+         {
+            "comment" : "/**\n * 円柱を表す形状の種類です。\n */",
+            "subject" : "public static const SHAPE_CYLINDER:uint = 0x3;"
+         },
+         {
+            "comment" : "/**\n * この形状の固有数値です。\n * 通常この値は他の形状とかぶることはありません。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var id:uint;"
+         },
+         {
+            "comment" : "/**\n * 形状の種類を表します。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var type:uint;"
+         },
+         {
+            "comment" : "/**\n * 重心のワールド座標です。\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体に対する相対位置座標です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var relativePosition:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 剛体に対する初期状態での相対位置座標です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localRelativePosition:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 回転行列です。\n */",
+            "subject" : "public var rotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 剛体に対する相対回転行列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var relativeRotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 質量です。\n * <strong>この変数は外部から変更しないでください。</strong>\n * 質量を変更する場合は setDensity メソッドを使用してください。\n */",
+            "subject" : "public var mass:Number;"
+         },
+         {
+            "comment" : "/**\n * 初期状態での慣性テンソルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var localInertia:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 広域衝突判定に用いられる単純化された形状です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var proxy:Proxy;"
+         },
+         {
+            "comment" : "/**\n * 摩擦係数です。\n */",
+            "subject" : "public var friction:Number;"
+         },
+         {
+            "comment" : "/**\n * 反発係数です。\n */",
+            "subject" : "public var restitution:Number;"
+         },
+         {
+            "comment" : "/**\n * 形状の親となる剛体です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var parent:RigidBody;"
+         },
+         {
+            "comment" : "/**\n * 形状に関与する接触点のリンク配列です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var contactList:ContactConnection;"
+         },
+         {
+            "comment" : "/**\n * 形状の接触点の数です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var numContacts:uint;"
+         },
+         {
+            "comment" : "/**\n * 新しい Shape オブジェクトを作成します。\n * <strong>このコンストラクタは外部から呼び出さないでください。</strong>\n */",
+            "subject" : "public function Shape() {"
+         },
+         {
+            "comment" : "/**\n * この形状のプロキシを更新します。\n */",
+            "subject" : "public function updateProxy():void {"
+         }
+      ],
+      "ShapeConfig" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * 形状の初期化時に使われる共通設定のクラスです。\n * このクラスの変数はコピーして使われ、直接参照を持たれることはありません。\n * @author saharan\n */",
+            "subject" : "public class ShapeConfig {"
+         },
+         {
+            "comment" : "/**\n * 重心のワールド座標です。\n */",
+            "subject" : "public var position:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 回転行列です。\n * この値を変更すると、剛体ではなく剛体に含まれる形状の\n * 相対的な角度が変更されることに注意してください。\n */",
+            "subject" : "public var rotation:Mat33;"
+         },
+         {
+            "comment" : "/**\n * 摩擦係数です。\n */",
+            "subject" : "public var friction:Number;"
+         },
+         {
+            "comment" : "/**\n * 反発係数です。\n */",
+            "subject" : "public var restitution:Number;"
+         },
+         {
+            "comment" : "/**\n * 密度です。\n */",
+            "subject" : "public var density:Number;"
+         },
+         {
+            "comment" : "/**\n * 新しく ShapeConfig オブジェクトを作成します。\n */",
+            "subject" : "public function ShapeConfig() {"
+         }
+      ],
+      "CylinderShape" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * 円柱を表す形状です。\n * @author saharan\n */",
+            "subject" : "public class CylinderShape extends Shape {"
+         },
+         {
+            "comment" : "/**\n * 円柱の半径です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var radius:Number;"
+         },
+         {
+            "comment" : "/**\n * 円柱の高さです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var height:Number;"
+         },
+         {
+            "comment" : "/**\n * 円柱の高さの半分です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfHeight:Number;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での円柱の向きを示す単位ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var normalDirection:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での円柱の向きを示す高さの半分の長さのベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfDirection:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 新しく CylinderShape オブジェクトを作成します。\n * @paramradius 円柱の半径\n * @paramheight 円柱の高さ\n * @paramconfig 形状の設定\n */",
+            "subject" : "public function CylinderShape(radius:Number, height:Number, config:ShapeConfig) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function updateProxy():void {"
+         }
+      ],
+      "BoxShape" : [
+         {
+            "comment" : "/* Copyright (c) 2012 EL-EMENT saharan\n * \n * Permission is hereby granted, free of charge, to any person obtaining a copy of this\n * software and associated documentation  * files (the \"Software\"), to deal in the Software\n * without restriction, including without limitation the rights to use, copy,  * modify, merge,\n * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to\n * whom the Software is furnished to do so, subject to the following conditions:\n * \n * The above copyright notice and this permission notice shall be included in all copies or\n * substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\n * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR\n * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */",
+            "subject" : "package com.element.oimo.physics.collision.shape {"
+         },
+         {
+            "comment" : "/**\n * 箱を表す形状です。\n * @author saharan\n */",
+            "subject" : "public class BoxShape extends Shape {"
+         },
+         {
+            "comment" : "/**\n * 箱の幅です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var width:Number;"
+         },
+         {
+            "comment" : "/**\n * 箱の幅の半分です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfWidth:Number;"
+         },
+         {
+            "comment" : "/**\n * 箱の高さです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var height:Number;"
+         },
+         {
+            "comment" : "/**\n * 箱の高さの半分です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfHeight:Number;"
+         },
+         {
+            "comment" : "/**\n * 箱の奥行きです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var depth:Number;"
+         },
+         {
+            "comment" : "/**\n * 箱の奥行きの半分です。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfDepth:Number;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での幅の向きを示す単位ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var normalDirectionWidth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での高さの向きを示す単位ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var normalDirectionHeight:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での奥行きの向きを示す単位ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var normalDirectionDepth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での幅の向きを示す幅の半分の長さのベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfDirectionWidth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での高さの向きを示す高さの半分の長さのベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfDirectionHeight:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での奥行きの向きを示す奥行きの半分の長さのベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var halfDirectionDepth:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex1:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex2:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex3:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex4:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex5:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex6:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex7:Vec3;"
+         },
+         {
+            "comment" : "/**\n * ワールド座標系での頂点の一つの位置ベクトルです。\n * <strong>この変数は外部から変更しないでください。</strong>\n */",
+            "subject" : "public var vertex8:Vec3;"
+         },
+         {
+            "comment" : "/**\n * 新しく BoxShape オブジェクトを作成します。\n * @paramwidth 箱の幅\n * @paramheight 箱の高さ\n * @paramdepth 箱の奥行き\n * @paramconfig 形状の設定\n */",
+            "subject" : "public function BoxShape(width:Number, height:Number, depth:Number, config:ShapeConfig) {"
+         },
+         {
+            "comment" : "/**\n * @inheritDoc\n */",
+            "subject" : "override public function updateProxy():void {"
+         }
+      ]
+   }
+}
